@@ -10,4 +10,4 @@ Este repositório é dedicado ao armazenamento dos diversos TPC realizados ao lo
 
 > **Foto:**
 
-> ![Foto Perfil](https://github.com/user-attachments/assets/575cd72e-b849-4e66-a39b-5c8552c4e80e)
+> ![Foto Perfil](https://github.com/user-attachments/assets/93c3244b-7485-481b-8ae0-d92d039f5cf2)

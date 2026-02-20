@@ -1,0 +1,182 @@
+@prefix : <http://rpcw.di.uminho.pt/historia/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://rpcw.di.uminho.pt/historia/> .
+
+<http://rpcw.di.uminho.pt/historia> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://rpcw.di.uminho.pt/historia/amigoDe
+:amigoDe rdf:type owl:ObjectProperty ,
+                  owl:SymmetricProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/aprendeLingua
+:aprendeLingua rdf:type owl:ObjectProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/estudaEm
+:estudaEm rdf:type owl:ObjectProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/falaLingua
+:falaLingua rdf:type owl:ObjectProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/frequentaCurso
+:frequentaCurso rdf:type owl:ObjectProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/leciona
+:leciona rdf:type owl:ObjectProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/oriundoDe
+:oriundoDe rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://rpcw.di.uminho.pt/historia/temHorário
+:temHorário rdf:type owl:DatatypeProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/temIdade
+:temIdade rdf:type owl:DatatypeProperty .
+
+
+###  http://rpcw.di.uminho.pt/historia/éLecionadoEm
+:éLecionadoEm rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://rpcw.di.uminho.pt/historia/Cidade
+:Cidade rdf:type owl:Class .
+
+
+###  http://rpcw.di.uminho.pt/historia/Curso
+:Curso rdf:type owl:Class .
+
+
+###  http://rpcw.di.uminho.pt/historia/Instituição
+:Instituição rdf:type owl:Class .
+
+
+###  http://rpcw.di.uminho.pt/historia/Lingua
+:Lingua rdf:type owl:Class .
+
+
+###  http://rpcw.di.uminho.pt/historia/País
+:País rdf:type owl:Class .
+
+
+###  http://rpcw.di.uminho.pt/historia/Pessoa
+:Pessoa rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://rpcw.di.uminho.pt/historia/Alemanha
+:Alemanha rdf:type owl:NamedIndividual ,
+                   :País .
+
+
+###  http://rpcw.di.uminho.pt/historia/Alemão
+:Alemão rdf:type owl:NamedIndividual ,
+                 :Lingua .
+
+
+###  http://rpcw.di.uminho.pt/historia/Ana
+:Ana rdf:type owl:NamedIndividual ,
+              :Pessoa ;
+     :amigoDe :Carlos ;
+     :frequentaCurso :Curso_de_Alemão .
+
+
+###  http://rpcw.di.uminho.pt/historia/Carlos
+:Carlos rdf:type owl:NamedIndividual ,
+                 :Pessoa ;
+        :frequentaCurso :Curso_de_Alemão .
+
+
+###  http://rpcw.di.uminho.pt/historia/Curso_de_Alemão
+:Curso_de_Alemão rdf:type owl:NamedIndividual ,
+                          :Curso ;
+                 :temHorário "Sexta-feira" ;
+                 :éLecionadoEm "Centro de Línguas" .
+
+
+###  http://rpcw.di.uminho.pt/historia/Curso_de_Biotecnologia
+:Curso_de_Biotecnologia rdf:type owl:NamedIndividual ,
+                                 :Curso .
+
+
+###  http://rpcw.di.uminho.pt/historia/Eduardo
+:Eduardo rdf:type owl:NamedIndividual ,
+                  :Pessoa ;
+         :amigoDe :Ana ,
+                  :Carlos ,
+                  :Hanna ;
+         :aprendeLingua :Alemão ;
+         :falaLingua :Alemão ,
+                     :Espanhol ,
+                     :Ingles ,
+                     :Portugues ;
+         :frequentaCurso :Curso_de_Alemão ;
+         :temIdade "21" .
+
+
+###  http://rpcw.di.uminho.pt/historia/Espanhol
+:Espanhol rdf:type owl:NamedIndividual ,
+                   :Lingua .
+
+
+###  http://rpcw.di.uminho.pt/historia/Hanna
+:Hanna rdf:type owl:NamedIndividual ,
+                :Pessoa ;
+       :falaLingua :Alemão ,
+                   :Portugues ;
+       :frequentaCurso :Curso_de_Biotecnologia ;
+       :oriundoDe :Alemanha .
+
+
+###  http://rpcw.di.uminho.pt/historia/Helmut_Ratz
+:Helmut_Ratz rdf:type owl:NamedIndividual ,
+                      :Pessoa ;
+             :leciona :Curso_de_Alemão .
+
+
+###  http://rpcw.di.uminho.pt/historia/Ingles
+:Ingles rdf:type owl:NamedIndividual ,
+                 :Lingua .
+
+
+###  http://rpcw.di.uminho.pt/historia/Porto
+:Porto rdf:type owl:NamedIndividual ,
+                :Cidade .
+
+
+###  http://rpcw.di.uminho.pt/historia/Portugues
+:Portugues rdf:type owl:NamedIndividual ,
+                    :Lingua .
+
+
+###  http://rpcw.di.uminho.pt/historia/Universidade_do_Minho
+:Universidade_do_Minho rdf:type owl:NamedIndividual ,
+                                :Instituição .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

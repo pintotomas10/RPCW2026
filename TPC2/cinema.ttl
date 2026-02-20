@@ -1,0 +1,700 @@
+@prefix : <http://www.semanticweb.org/utilizador/ontologies/2026/cinema/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/utilizador/ontologies/2026/cinema/> .
+
+<http://www.semanticweb.org/utilizador/ontologies/2026/cinema> rdf:type owl:Ontology ;
+                                                                rdfs:comment "Uma ontologia sobre cinema"@pt .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Atuou
+:Atuou rdf:type owl:ObjectProperty ;
+       owl:inverseOf :temAtor .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/compôs
+:compôs rdf:type owl:ObjectProperty ;
+        owl:inverseOf :foiComposta ;
+        rdfs:domain :Pessoa ;
+        rdfs:range :Obra .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/escreveu
+:escreveu rdf:type owl:ObjectProperty ;
+          owl:inverseOf :foiEscrita ;
+          rdfs:domain :Pessoa ;
+          rdfs:range :Obra .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/foiComposta
+:foiComposta rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/foiEscrita
+:foiEscrita rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/foi_realizado
+:foi_realizado rdf:type owl:ObjectProperty ;
+               owl:inverseOf :realizou .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/realizou
+:realizou rdf:type owl:ObjectProperty ,
+                   owl:FunctionalProperty ;
+          rdfs:domain :Pessoa ;
+          rdfs:range :Filme .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/representa
+:representa rdf:type owl:ObjectProperty ;
+            rdfs:domain :Ator ;
+            rdfs:range :Personagem .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temArgumento
+:temArgumento rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temAtor
+:temAtor rdf:type owl:ObjectProperty ;
+         rdfs:domain :Filme ;
+         rdfs:range :Pessoa .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temGénero
+:temGénero rdf:type owl:ObjectProperty ;
+           rdfs:domain :Filme ;
+           rdfs:range :Género .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temLíngua
+:temLíngua rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temPaísOrigem
+:temPaísOrigem rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temPersonagem
+:temPersonagem rdf:type owl:ObjectProperty ;
+               owl:inverseOf :éPersonagem .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temPeçaMusical
+:temPeçaMusical rdf:type owl:ObjectProperty ;
+                rdfs:domain :Filme ;
+                rdfs:range :PeçaMusical .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/éPersonagem
+:éPersonagem rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/data
+:data rdf:type owl:DatatypeProperty ;
+      rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/duração
+:duração rdf:type owl:DatatypeProperty ;
+         rdfs:range xsd:integer .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/temSexo
+:temSexo rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Pessoa .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/titulo
+:titulo rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Filme ;
+        rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Argumento
+:Argumento rdf:type owl:Class ;
+           rdfs:subClassOf :Obra .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Ator
+:Ator rdf:type owl:Class ;
+      owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :Atuou ;
+                                                   owl:someValuesFrom :Filme
+                                                 ]
+                                               ) ;
+                            rdf:type owl:Class
+                          ] ;
+      rdfs:subClassOf [ rdf:type owl:Class ;
+                        owl:unionOf ( :AtorFeminino
+                                      :AtorMasculino
+                                    )
+                      ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/AtorFeminino
+:AtorFeminino rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Ator
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :temSexo ;
+                                                           owl:hasValue "F"
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/AtorMasculino
+:AtorMasculino rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Ator
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :temSexo ;
+                                                            owl:hasValue "M"
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Escritor
+:Escritor rdf:type owl:Class ;
+          owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                     [ rdf:type owl:Restriction ;
+                                                       owl:onProperty :escreveu ;
+                                                       owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                            owl:unionOf ( :Argumento
+                                                                                          :Livro
+                                                                                        )
+                                                                          ]
+                                                     ]
+                                                   ) ;
+                                rdf:type owl:Class
+                              ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Filme
+:Filme rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :data ;
+                         owl:someValuesFrom xsd:string
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :duração ;
+                         owl:someValuesFrom xsd:integer
+                       ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeAventura
+:FilmeAventura rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :temGénero ;
+                                                            owl:hasValue :G_Aventura
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeComedia
+:FilmeComedia rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :temGénero ;
+                                                           owl:hasValue :G_Comédia
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeDramático
+:FilmeDramático rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :temGénero ;
+                                                             owl:hasValue :G_Drama
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeInfantil
+:FilmeInfantil rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :temGénero ;
+                                                            owl:hasValue :G_Infantil
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] ;
+               rdfs:subClassOf :Filme .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeMusical
+:FilmeMusical rdf:type owl:Class ;
+              owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                         [ rdf:type owl:Restriction ;
+                                                           owl:onProperty :temGénero ;
+                                                           owl:hasValue :G_Musical
+                                                         ]
+                                                       ) ;
+                                    rdf:type owl:Class
+                                  ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmeRomântico
+:FilmeRomântico rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :temGénero ;
+                                                             owl:hasValue :G_Romance
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/FilmesInteressantes
+:FilmesInteressantes rdf:type owl:Class ;
+                     owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                                [ rdf:type owl:Restriction ;
+                                                                  owl:onProperty :temGénero ;
+                                                                  owl:minCardinality "2"^^xsd:nonNegativeInteger
+                                                                ]
+                                                              ) ;
+                                           rdf:type owl:Class
+                                         ] ,
+                                         [ rdf:type owl:Restriction ;
+                                           owl:onProperty :temGénero ;
+                                           owl:minQualifiedCardinality "2"^^xsd:nonNegativeInteger ;
+                                           owl:onClass :Género
+                                         ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Género
+:Género rdf:type owl:Class ;
+        owl:equivalentClass [ rdf:type owl:Class ;
+                              owl:oneOf ( :G_Aventura
+                                          :G_Ação
+                                          :G_Comédia
+                                          :G_Drama
+                                          :G_Ficção
+                                          :G_Infantil
+                                          :G_Musical
+                                          :G_Romance
+                                          :G_Terror
+                                          :G_Thriller
+                                        )
+                            ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Livro
+:Livro rdf:type owl:Class ;
+       rdfs:subClassOf :Obra .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Língua
+:Língua rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Músico
+:Músico rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                   [ rdf:type owl:Restriction ;
+                                                     owl:onProperty :compôs ;
+                                                     owl:someValuesFrom :PeçaMusical
+                                                   ]
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Obra
+:Obra rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/País
+:País rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem
+:Personagem rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Pessoa
+:Pessoa rdf:type owl:Class ;
+        owl:equivalentClass [ owl:intersectionOf ( :AtorFeminino
+                                                   :AtorMasculino
+                                                 ) ;
+                              rdf:type owl:Class
+                            ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/PeçaMusical
+:PeçaMusical rdf:type owl:Class ;
+             rdfs:subClassOf :Obra .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Realizador
+:Realizador rdf:type owl:Class ;
+            owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty :realizou ;
+                                                         owl:someValuesFrom :Filme
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/longasMetragens
+:longasMetragens rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( :Filme
+                                                            [ rdf:type owl:Restriction ;
+                                                              owl:onProperty :duração ;
+                                                              owl:someValuesFrom [ rdf:type rdfs:Datatype ;
+                                                                                   owl:onDatatype xsd:integer ;
+                                                                                   owl:withRestrictions ( [ xsd:minExclusive 60
+                                                                                                          ]
+                                                                                                        )
+                                                                                 ]
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/A_TeenBeachMovie
+:A_TeenBeachMovie rdf:type owl:NamedIndividual ,
+                           :Argumento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/A_Twilight
+:A_Twilight rdf:type owl:NamedIndividual ,
+                     :Argumento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/F_Madagascar2
+:F_Madagascar2 rdf:type owl:NamedIndividual ,
+                        :Filme ;
+               :temGénero :G_Aventura ,
+                          :G_Infantil ;
+               :data "2008-10-26" ;
+               :duração 89 ;
+               :titulo "Madagascar 2" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/F_TeenBeachMovie
+:F_TeenBeachMovie rdf:type owl:NamedIndividual ,
+                           :Filme ;
+                  :temArgumento :A_TeenBeachMovie ;
+                  :temGénero :G_Comédia ,
+                             :G_Infantil ,
+                             :G_Musical ;
+                  :temLíngua :L_Inglês ;
+                  :temPaísOrigem :País_EstadosUnidos ;
+                  :data "2013-07-19" ;
+                  :duração 110 ;
+                  :titulo "Teen Beach Movie" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/F_Twilight
+:F_Twilight rdf:type owl:NamedIndividual ,
+                     :Filme ;
+            :temArgumento :A_Twilight ;
+            :temGénero :G_Drama ,
+                       :G_Romance ,
+                       :G_Thriller ;
+            :temLíngua :L_Inglês ;
+            :temPaísOrigem :País_EstadosUnidos ;
+            :data "2008-12-04" ;
+            :duração 122 .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Aventura
+:G_Aventura rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Ação
+:G_Ação rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Comédia
+:G_Comédia rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Drama
+:G_Drama rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Ficção
+:G_Ficção rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Infantil
+:G_Infantil rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Musical
+:G_Musical rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Romance
+:G_Romance rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Terror
+:G_Terror rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/G_Thriller
+:G_Thriller rdf:type owl:NamedIndividual .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/L_Francês
+:L_Francês rdf:type owl:NamedIndividual ,
+                    :Língua .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/L_Inglês
+:L_Inglês rdf:type owl:NamedIndividual ,
+                   :Língua .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/L_Português
+:L_Português rdf:type owl:NamedIndividual ,
+                      :Língua .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Ben_Stiller
+:P_Ben_Stiller rdf:type owl:NamedIndividual ;
+               :Atuou :F_Madagascar2 ;
+               :representa :Personagem_Alex ;
+               :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_BillyBurke
+:P_BillyBurke rdf:type owl:NamedIndividual ,
+                       :Pessoa ;
+              :Atuou :F_Twilight ;
+              :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_CatherineHardwicke
+:P_CatherineHardwicke rdf:type owl:NamedIndividual ,
+                               :Pessoa ;
+                      :realizou :F_Twilight ;
+                      :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Cris_Rock
+:P_Cris_Rock rdf:type owl:NamedIndividual ;
+             :Atuou :F_Madagascar2 ;
+             :representa :Personagem_Marty ;
+             :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_David_Schwimmer
+:P_David_Schwimmer rdf:type owl:NamedIndividual ;
+                   :Atuou :F_Madagascar2 ;
+                   :representa :Personagem_Melman ;
+                   :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Eric_Darnell
+:P_Eric_Darnell rdf:type owl:NamedIndividual ;
+                :realizou :F_Madagascar2 ;
+                :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Etan_Cohen
+:P_Etan_Cohen rdf:type owl:NamedIndividual ;
+              :Atuou :F_Madagascar2 ;
+              :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Garrett_Clayton
+:P_Garrett_Clayton rdf:type owl:NamedIndividual ;
+                   :Atuou :F_TeenBeachMovie ;
+                   :representa :Personagem_Tanner ;
+                   :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Gracie_Gillam
+:P_Gracie_Gillam rdf:type owl:NamedIndividual ;
+                 :Atuou :F_TeenBeachMovie ;
+                 :representa :Personagem_Lela ;
+                 :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Jada_pinkett_Smith
+:P_Jada_pinkett_Smith rdf:type owl:NamedIndividual ;
+                      :Atuou :F_Madagascar2 ;
+                      :representa :Personagem_Gloria ;
+                      :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Jeffrey_Hornaday
+:P_Jeffrey_Hornaday rdf:type owl:NamedIndividual ;
+                    :realizou :F_TeenBeachMovie ;
+                    :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_KristenSteward
+:P_KristenSteward rdf:type owl:NamedIndividual ,
+                           :Pessoa ;
+                  :Atuou :F_Twilight ;
+                  :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Maia_Mitchell
+:P_Maia_Mitchell rdf:type owl:NamedIndividual ;
+                 :Atuou :F_TeenBeachMovie ;
+                 :representa :Personagem_McKenzie ;
+                 :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Mark_Landry
+:P_Mark_Landry rdf:type owl:NamedIndividual ;
+               :escreveu :A_TeenBeachMovie ;
+               :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_MelissaRosenberg
+:P_MelissaRosenberg rdf:type owl:NamedIndividual ,
+                             :Pessoa ;
+                    :escreveu :A_Twilight ;
+                    :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_RobertPattinson
+:P_RobertPattinson rdf:type owl:NamedIndividual ,
+                            :Pessoa ;
+                   :Atuou :F_Twilight ;
+                   :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Robert_Horn
+:P_Robert_Horn rdf:type owl:NamedIndividual ;
+               :escreveu :A_TeenBeachMovie ;
+               :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Ross_Lynch
+:P_Ross_Lynch rdf:type owl:NamedIndividual ;
+              :Atuou :F_TeenBeachMovie ;
+              :representa :Personagem_Brady ;
+              :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_SarahClarke
+:P_SarahClarke rdf:type owl:NamedIndividual ,
+                        :Pessoa ;
+               :Atuou :F_Twilight ;
+               :temSexo "F" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_TaylorLautner
+:P_TaylorLautner rdf:type owl:NamedIndividual ,
+                          :Pessoa ;
+                 :Atuou :F_Twilight ;
+                 :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Tom_McGrath
+:P_Tom_McGrath rdf:type owl:NamedIndividual ;
+               :realizou :F_Madagascar2 ;
+               :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/P_Vince_Marcello
+:P_Vince_Marcello rdf:type owl:NamedIndividual ;
+                  :escreveu :A_TeenBeachMovie ;
+                  :temSexo "M" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/País_EstadosUnidos
+:País_EstadosUnidos rdf:type owl:NamedIndividual ,
+                             :País .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/País_França
+:País_França rdf:type owl:NamedIndividual ,
+                      :País .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/País_Inglaterra
+:País_Inglaterra rdf:type owl:NamedIndividual ,
+                          :País .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/País_Portugal
+:País_Portugal rdf:type owl:NamedIndividual ,
+                        :País .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Alex
+:Personagem_Alex rdf:type owl:NamedIndividual ,
+                          :Personagem ;
+                 :éPersonagem :F_Madagascar2 .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Brady
+:Personagem_Brady rdf:type owl:NamedIndividual ;
+                  :éPersonagem :F_TeenBeachMovie .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Gloria
+:Personagem_Gloria rdf:type owl:NamedIndividual ;
+                   :éPersonagem :F_Madagascar2 .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Lela
+:Personagem_Lela rdf:type owl:NamedIndividual ;
+                 :éPersonagem :F_TeenBeachMovie .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Marty
+:Personagem_Marty rdf:type owl:NamedIndividual ;
+                  :éPersonagem :F_Madagascar2 .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_McKenzie
+:Personagem_McKenzie rdf:type owl:NamedIndividual ;
+                     :éPersonagem :F_TeenBeachMovie .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Melman
+:Personagem_Melman rdf:type owl:NamedIndividual ;
+                   :éPersonagem :F_Madagascar2 .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/cinema/Personagem_Tanner
+:Personagem_Tanner rdf:type owl:NamedIndividual ;
+                   :éPersonagem :F_TeenBeachMovie .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
