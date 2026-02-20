@@ -1,6 +1,6 @@
 # Manifesto: TPC2 - Ontologia de Cinema (Cinema Ontology)
 
-**Data:** 2026-02-04
+**Data:** 2026-02-11
 
 ## Resumo
 Este trabalho consistiu na criação de uma ontologia sobre produções cinematográficas, com o objetivo de modelar e estruturar o conhecimento associado a filmes, realizadores, atores e géneros. A ontologia estabelece relações entre estas entidades, permitindo representar de forma organizada os diferentes elementos que compõem uma produção cinematográfica. Graças à integração de lógica descritiva, o modelo possibilita a realização de inferências automáticas, como por exemplo classificar uma Pessoa como Ator caso esta atue num filme, sem que essa classificação tenha de ser explicitamente declarada.
