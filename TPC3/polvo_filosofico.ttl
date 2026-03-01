@@ -1,0 +1,287 @@
+@prefix : <http://example.org/polvo-filosofico#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+############################
+# Ontologia
+############################
+
+:PolvoFilosoficoOntology a owl:Ontology .
+
+############################
+# Classes
+############################
+
+:Agente a owl:Class .
+
+:Pessoa a owl:Class ;
+    rdfs:subClassOf :Agente .
+
+:Animal a owl:Class ;
+    rdfs:subClassOf :Agente .
+
+:Maquina a owl:Class ;
+    rdfs:subClassOf :Agente .
+
+:Polvo a owl:Class ;
+    rdfs:subClassOf :Animal .
+
+:Gato a owl:Class ;
+    rdfs:subClassOf :Animal .
+
+:Funcionario a owl:Class ;
+    rdfs:subClassOf :Pessoa .
+
+:Cliente a owl:Class ;
+    rdfs:subClassOf :Pessoa .
+
+:Garcom a owl:Class ;
+    rdfs:subClassOf :Funcionario .
+
+:Cozinheiro a owl:Class ;
+    rdfs:subClassOf :Funcionario .
+
+:RoboCozinheiro a owl:Class ;
+    rdfs:subClassOf :Maquina , :Cozinheiro ;
+    owl:disjointWith :Cliente .
+
+:Restaurante a owl:Class .
+
+:Pedido a owl:Class .
+
+:Prato a owl:Class .
+
+:PratoVegano a owl:Class ;
+    rdfs:subClassOf :Prato ;
+    owl:disjointWith :PratoCarnivoro .
+
+:PratoCarnivoro a owl:Class ;
+    rdfs:subClassOf :Prato .
+
+:PratoOntologicamenteAmbiguo a owl:Class ;
+    rdfs:subClassOf :Prato .
+
+:Ingrediente a owl:Class .
+
+:IngredienteAnimal a owl:Class ;
+    rdfs:subClassOf :Ingrediente .
+
+############################
+# Propriedades
+############################
+
+:trabalhaEm a owl:ObjectProperty ;
+    rdfs:domain :Funcionario ;
+    rdfs:range :Restaurante .
+
+:fazPedido a owl:ObjectProperty ;
+    rdfs:domain :Cliente ;
+    rdfs:range :Pedido .
+
+:contemPrato a owl:ObjectProperty ;
+    rdfs:domain :Pedido ;
+    rdfs:range :Prato .
+
+:temIngrediente a owl:ObjectProperty ;
+    rdfs:domain :Prato ;
+    rdfs:range :Ingrediente .
+
+:come a owl:ObjectProperty ;
+    rdfs:domain :Agente ;
+    rdfs:range :Prato .
+
+############################
+# Restrições (Axiomas)
+############################
+
+# 1. Todo o Funcionário trabalha em exatamente um Restaurante
+:Funcionario rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :trabalhaEm ;
+      owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass :Restaurante
+    ] .
+
+# 2. Todo o Restaurante tem pelo menos um Cozinheiro
+:Restaurante rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty [ owl:inverseOf :trabalhaEm ] ;
+      owl:someValuesFrom :Cozinheiro
+    ] .
+
+# 3. Todo o Pedido contém pelo menos um Prato
+:Pedido rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :contemPrato ;
+      owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+      owl:onClass :Prato
+    ] .
+
+# 4. Prato Vegano não pode ter ingredientes animais
+:PratoVegano rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :temIngrediente ;
+      owl:allValuesFrom
+        [ a owl:Class ;
+          owl:complementOf :IngredienteAnimal
+        ]
+    ] .
+
+# 6. Polvos não comem pratos com ingrediente polvo
+:PratoComPolvo a owl:Class ;
+    owl:equivalentClass
+        [ a owl:Restriction ;
+          owl:onProperty :temIngrediente ;
+          owl:someValuesFrom :Polvo
+        ] .
+
+:Polvo rdfs:subClassOf
+    [ a owl:Restriction ;
+      owl:onProperty :come ;
+      owl:allValuesFrom
+        [ a owl:Class ;
+          owl:complementOf :PratoComPolvo
+        ]
+    ] .
+
+############################
+# Indivíduos
+############################
+
+############################
+# Exemplo de Pedido Problemático
+############################
+
+:IngredientePolvo a :IngredienteAnimal , :Polvo .
+
+:PratoDoDia a :PratoCarnivoro ;
+    :temIngrediente :IngredientePolvo .
+
+:Pedido1 a :Pedido ;
+    :contemPrato :PratoDoDia .
+
+:Aristoteles :come :PratoDoDia .
+
+############################
+# Restaurante
+############################
+
+:O_Polvo_Filosofico a :Restaurante .
+
+############################
+# Funcionários
+############################
+
+:Aristoteles a :Polvo , :Cozinheiro ;
+    :trabalhaEm :O_Polvo_Filosofico .
+
+:RoboCozinheiro1 a :RoboCozinheiro ;
+    :trabalhaEm :O_Polvo_Filosofico .
+
+:Helena a :Garcom ;
+    :trabalhaEm :O_Polvo_Filosofico .
+
+:Marco a :Garcom ;
+    :trabalhaEm :O_Polvo_Filosofico .
+
+############################
+# Clientes
+############################
+
+:Ana a :Cliente .
+:Bruno a :Cliente .
+:Carla a :Cliente .
+:Daniel a :Cliente .
+:Eva a :Cliente .
+
+# Schrödinger: cliente E funcionário
+:Schrodinger a :Gato , :Cliente , :Funcionario ;
+    :trabalhaEm :O_Polvo_Filosofico .
+
+############################
+# Ingredientes
+############################
+
+:Tofu a :Ingrediente .
+:Alface a :Ingrediente .
+:Tomate a :Ingrediente .
+:Cogumelos a :Ingrediente .
+
+:CarneVaca a :IngredienteAnimal .
+:Peixe a :IngredienteAnimal .
+:PolvoIngrediente a :IngredienteAnimal , :Polvo .
+
+############################
+# Pratos Veganos
+############################
+
+:SaladaExistencial a :PratoVegano ;
+    :temIngrediente :Alface , :Tomate .
+
+:TofuMetafisico a :PratoVegano ;
+    :temIngrediente :Tofu , :Cogumelos .
+
+############################
+# Pratos Carnívoros
+############################
+
+:BifeDeterminista a :PratoCarnivoro ;
+    :temIngrediente :CarneVaca .
+
+:PeixeDoLivreArbitrio a :PratoCarnivoro ;
+    :temIngrediente :Peixe .
+
+############################
+# Pratos Ontologicamente Ambíguos
+############################
+
+:PratoDoObservador a :PratoOntologicamenteAmbiguo ;
+    :temIngrediente :Cogumelos , :Peixe .
+
+:DilemaDoSer a :PratoOntologicamenteAmbiguo ;
+    :temIngrediente :Tofu , :CarneVaca .
+
+############################
+# Pratos Problemáticos
+############################
+
+:EnsopadoCanibal a :PratoCarnivoro ;
+    :temIngrediente :PolvoIngrediente .
+
+############################
+# Pedidos
+############################
+
+:Pedido1 a :Pedido ;
+    :contemPrato :SaladaExistencial ;
+    :feitoPor :Ana .
+
+:Pedido2 a :Pedido ;
+    :contemPrato :BifeDeterminista ;
+    :feitoPor :Bruno .
+
+:Pedido3 a :Pedido ;
+    :contemPrato :PratoDoObservador ;
+    :feitoPor :Carla .
+
+:Pedido4 a :Pedido ;
+    :contemPrato :EnsopadoCanibal ;
+    :feitoPor :Daniel .
+
+:Pedido5 a :Pedido ;
+    :contemPrato :TofuMetafisico , :PeixeDoLivreArbitrio ;
+    :feitoPor :Eva .
+
+############################
+# Consumo (para inferência)
+############################
+
+:Ana :come :SaladaExistencial .
+:Bruno :come :BifeDeterminista .
+:Carla :come :PratoDoObservador .
+:Daniel :come :EnsopadoCanibal .
+
+# Inconsistência propositada:
+:Aristoteles :come :EnsopadoCanibal .
