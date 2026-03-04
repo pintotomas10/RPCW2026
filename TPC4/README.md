@@ -38,7 +38,7 @@ python .\json_para_ttl.py
 Foram criadas e executadas 14 queries SPARQL (10 principais + 4 bónus) para responder a questões sobre a biblioteca temporal. As queries foram armazenadas em [Queries.md](Queries.md) e executadas contra a ontologia populada.
 
 ### 4. Script de Execução de Queries
-Criou-se um script Python ([temporal_queries.py](temporal_queries.py)) que executa todas as 14 queries SPARQL sobre a ontologia populada, exibindo os resultados de forma clara e estruturada.
+Criou-se um script Python ([Queries.py](Queries.py)) que executa todas as 14 queries SPARQL sobre a ontologia populada, exibindo os resultados de forma clara e estruturada.
 
 **Funcionalidades:**
 - Carrega a ontologia `bibliotecaTemporal_povoada.ttl`
@@ -50,12 +50,12 @@ Criou-se um script Python ([temporal_queries.py](temporal_queries.py)) que execu
 **Comandos de execução:**
 Para visualizar resultados no terminal:
 ```bash
-python .\temporal_queries.py
+python .\Queries.py
 ```
 
 Para guardar resultados num ficheiro:
 ```bash
-python .\temporal_queries.py queries_resultados.txt
+python .\Queries.py queries.txt
 ```
 
 **Ficheiros de saída:**
@@ -81,9 +81,9 @@ python .\temporal_queries.py queries_resultados.txt
 - `bibliotecaTemporal.ttl` - Ontologia base em Turtle
 - `bibliotecaTemporal_povoada.ttl` - Ontologia populada com dados dos JSONs
 - `json_para_ttl.py` - Script para converter JSONs e popular ontologia
-- `temporal_queries.py` - Script para executar queries SPARQL
 - `Queries.md` - Documento com todas as 14 queries
-- `queries_utf8.txt` - Resultados das queries
+- `Queries.py` - Script para executar queries SPARQL
+- `queries.txt` - Resultados das queries
 
 ## Autor
 
