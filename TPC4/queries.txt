@@ -1,0 +1,648 @@
+✓ Ontologia carregada com sucesso
+
+======================================================================
+QUESTÃO 1 — Livros por linha temporal
+======================================================================
+Liste todos os livros que existem na linha temporal original (LinhaOriginal).
+
+Resultados: 70 livros
+
+1. Livro_002
+2. Livro_004
+3. Livro_009
+4. Livro_011
+5. Livro_013
+6. Livro_014
+7. Livro_016
+8. Livro_021
+9. Livro_023
+10. Livro_024
+11. Livro_025
+12. Livro_026
+13. Livro_028
+14. Livro_043
+15. Livro_045
+16. Livro_051
+17. Livro_Temporal_002
+18. Livro_Temporal_003
+19. Livro_Temporal_004
+20. Livro_Temporal_007
+21. Livro_Temporal_008
+22. Livro_Temporal_011
+23. Livro_Temporal_014
+24. Livro_Temporal_018
+25. Livro_Temporal_019
+26. Livro_Temporal_023
+27. Livro_Temporal_024
+28. Livro_Temporal_026
+29. Livro_Temporal_028
+30. Livro_Temporal_031
+31. Livro_Temporal_032
+32. Livro_Temporal_038
+33. Livro_Temporal_050
+34. Livro_001
+35. Livro_007
+36. Livro_015
+37. Livro_018
+38. Livro_027
+39. Livro_031
+40. Livro_032
+41. Livro_034
+42. Livro_035
+43. Livro_036
+44. Livro_037
+45. Livro_039
+46. Livro_041
+47. Livro_042
+48. Livro_047
+49. Livro_048
+50. Livro_050
+51. Livro_052
+52. Livro_Temporal_001
+53. Livro_Temporal_005
+54. Livro_Temporal_006
+55. Livro_Temporal_012
+56. Livro_Temporal_013
+57. Livro_Temporal_015
+58. Livro_Temporal_020
+59. Livro_Temporal_022
+60. Livro_Temporal_025
+61. Livro_Temporal_027
+62. Livro_Temporal_029
+63. Livro_Temporal_030
+64. Livro_Temporal_036
+65. Livro_Temporal_037
+66. Livro_Temporal_040
+67. Livro_Temporal_041
+68. Livro_Temporal_043
+69. Livro_Temporal_045
+70. Livro_Temporal_047
+
+======================================================================
+QUESTÃO 2 — Livros em múltiplas linhas temporais
+======================================================================
+Identifique os livros que existem em mais do que uma linha temporal.
+
+Resultados: 39 livros
+
+1. Livro_001 — 2 linhas temporais
+2. Livro_014 — 2 linhas temporais
+3. Livro_025 — 2 linhas temporais
+4. Livro_031 — 2 linhas temporais
+5. Livro_043 — 2 linhas temporais
+6. Livro_007 — 2 linhas temporais
+7. Livro_015 — 2 linhas temporais
+8. Livro_034 — 2 linhas temporais
+9. Livro_036 — 2 linhas temporais
+10. Livro_037 — 2 linhas temporais
+11. Livro_039 — 2 linhas temporais
+12. Livro_048 — 2 linhas temporais
+13. Livro_050 — 2 linhas temporais
+14. Livro_052 — 2 linhas temporais
+15. Livro_002 — 2 linhas temporais
+16. Livro_023 — 2 linhas temporais
+17. Livro_009 — 2 linhas temporais
+18. Livro_013 — 2 linhas temporais
+19. Livro_016 — 2 linhas temporais
+20. Livro_Temporal_005 — 2 linhas temporais
+21. Livro_Temporal_013 — 2 linhas temporais
+22. Livro_Temporal_015 — 2 linhas temporais
+23. Livro_Temporal_029 — 2 linhas temporais
+24. Livro_Temporal_030 — 2 linhas temporais
+25. Livro_Temporal_037 — 2 linhas temporais
+26. Livro_Temporal_040 — 2 linhas temporais
+27. Livro_Temporal_041 — 2 linhas temporais
+28. Livro_Temporal_043 — 2 linhas temporais
+29. Livro_Temporal_045 — 2 linhas temporais
+30. Livro_Temporal_047 — 2 linhas temporais
+31. Livro_Temporal_003 — 2 linhas temporais
+32. Livro_Temporal_007 — 2 linhas temporais
+33. Livro_Temporal_008 — 2 linhas temporais
+34. Livro_Temporal_011 — 2 linhas temporais
+35. Livro_Temporal_018 — 2 linhas temporais
+36. Livro_Temporal_019 — 2 linhas temporais
+37. Livro_Temporal_026 — 2 linhas temporais
+38. Livro_Temporal_038 — 2 linhas temporais
+39. Livro_Temporal_050 — 2 linhas temporais
+
+======================================================================
+QUESTÃO 3 — Livros paradoxais
+======================================================================
+Liste todos os livros classificados como LivroParodoxal.
+
+Resultados: 39 livros
+
+1. Livro_001
+2. Livro_002
+3. Livro_007
+4. Livro_009
+5. Livro_013
+6. Livro_014
+7. Livro_015
+8. Livro_016
+9. Livro_023
+10. Livro_025
+11. Livro_031
+12. Livro_034
+13. Livro_036
+14. Livro_037
+15. Livro_039
+16. Livro_043
+17. Livro_048
+18. Livro_050
+19. Livro_052
+20. Livro_Temporal_003
+21. Livro_Temporal_005
+22. Livro_Temporal_007
+23. Livro_Temporal_008
+24. Livro_Temporal_011
+25. Livro_Temporal_013
+26. Livro_Temporal_015
+27. Livro_Temporal_018
+28. Livro_Temporal_019
+29. Livro_Temporal_026
+30. Livro_Temporal_029
+31. Livro_Temporal_030
+32. Livro_Temporal_037
+33. Livro_Temporal_038
+34. Livro_Temporal_040
+35. Livro_Temporal_041
+36. Livro_Temporal_043
+37. Livro_Temporal_045
+38. Livro_Temporal_047
+39. Livro_Temporal_050
+
+======================================================================
+QUESTÃO 4 — Livros históricos e eventos
+======================================================================
+Para cada LivroHistorico, indique os eventos históricos que esse livro refere.
+
+Resultados: 31 relações
+
+Livro_004:
+  → Descobrimento_da_America
+
+Livro_011:
+  → Revolucao_Industrial
+
+Livro_018:
+  → Crise_de_1929
+
+Livro_021:
+  → Revolucao_Industrial
+
+Livro_024:
+  → Revolucao_Industrial
+
+Livro_026:
+  → Descobrimento_da_America
+
+Livro_027:
+  → Queda_do_Muro
+
+Livro_028:
+  → Queda_do_Muro
+
+Livro_032:
+  → Revolucao_Industrial
+
+Livro_035:
+  → Crise_de_1929
+
+Livro_041:
+  → Descobrimento_da_America
+
+Livro_042:
+  → Crise_de_1929
+
+Livro_045:
+  → Revolucao_Industrial
+
+Livro_047:
+  → Descobrimento_da_America
+
+Livro_051:
+  → Primeiro_Voo
+
+Livro_Temporal_001:
+  → Pax_Romana
+
+Livro_Temporal_002:
+  → Nascimento_do_Sol
+
+Livro_Temporal_004:
+  → Crise_das_Tulipas
+
+Livro_Temporal_006:
+  → Extincao_Dino
+
+Livro_Temporal_012:
+  → Nascimento_do_Sol
+
+Livro_Temporal_014:
+  → Extincao_Dino
+
+Livro_Temporal_020:
+  → Exploracao_Espacial
+
+Livro_Temporal_022:
+  → Nascimento_do_Sol
+
+Livro_Temporal_023:
+  → Extincao_Dino
+
+Livro_Temporal_024:
+  → Renascimento
+
+Livro_Temporal_025:
+  → Crise_das_Tulipas
+
+Livro_Temporal_027:
+  → Crise_das_Tulipas
+
+Livro_Temporal_028:
+  → Crise_das_Tulipas
+
+Livro_Temporal_031:
+  → Pax_Romana
+
+Livro_Temporal_032:
+  → Crise_das_Tulipas
+
+Livro_Temporal_036:
+  → Nascimento_do_Sol
+
+======================================================================
+QUESTÃO 5 — Inconsistências semânticas
+======================================================================
+Identifique livros classificados como LivroHistorico que referem eventos futuros.
+
+Resultados: 0 inconsistências
+
+✓ Nenhuma inconsistência encontrada!
+
+======================================================================
+QUESTÃO 6 — Autores mais prolíficos
+======================================================================
+Liste os autores e o número de livros que escreveram,
+ordenando o resultado por número de livros em ordem decrescente.
+
+Resultados: 20 autores
+
+1. Autor_2 — 10 livro(s)
+2. Autor_9 — 8 livro(s)
+3. Autor_E — 8 livro(s)
+4. Autor_A — 7 livro(s)
+5. Autor_7 — 6 livro(s)
+6. Autor_F — 6 livro(s)
+7. Autor_J — 6 livro(s)
+8. Autor_4 — 5 livro(s)
+9. Autor_5 — 5 livro(s)
+10. Autor_10 — 4 livro(s)
+11. Autor_6 — 4 livro(s)
+12. Autor_3 — 4 livro(s)
+13. Autor_1 — 4 livro(s)
+14. Autor_D — 4 livro(s)
+15. Autor_I — 4 livro(s)
+16. Autor_H — 4 livro(s)
+17. Autor_B — 4 livro(s)
+18. Autor_C — 4 livro(s)
+19. Autor_8 — 3 livro(s)
+20. Autor_G — 3 livro(s)
+
+======================================================================
+QUESTÃO 7 — Autores de livros paradoxais
+======================================================================
+Identifique os autores que escreveram pelo menos um livro paradoxal.
+
+Resultados: 19 autores
+
+1. Autor_1
+2. Autor_10
+3. Autor_2
+4. Autor_3
+5. Autor_4
+6. Autor_5
+7. Autor_6
+8. Autor_7
+9. Autor_8
+10. Autor_9
+11. Autor_A
+12. Autor_B
+13. Autor_C
+14. Autor_E
+15. Autor_F
+16. Autor_G
+17. Autor_H
+18. Autor_I
+19. Autor_J
+
+======================================================================
+QUESTÃO 8 — Livros em linhas alternativas
+======================================================================
+Liste todos os livros que existem em pelo menos uma linha temporal alternativa.
+
+Resultados: 72 livros
+
+Livro_001:
+  → Linha_Alt_Omega
+
+Livro_002:
+  → Linha_Alt_A
+
+Livro_003:
+  → Linha_Alt_A
+
+Livro_005:
+  → Linha_Alt_Recursiva
+
+Livro_006:
+  → Linha_Alt_A
+
+Livro_007:
+  → Linha_Alt_A
+
+Livro_008:
+  → Linha_Alt_A
+
+Livro_009:
+  → Linha_Alt_Recursiva
+
+Livro_010:
+  → Linha_Alt_Recursiva
+
+Livro_012:
+  → Linha_Alt_A
+
+Livro_013:
+  → Linha_Alt_Recursiva
+
+Livro_014:
+  → Linha_Alt_Omega
+
+Livro_015:
+  → Linha_Alt_A
+
+Livro_016:
+  → Linha_Alt_Recursiva
+
+Livro_017:
+  → Linha_Alt_A
+
+Livro_019:
+  → Linha_Alt_A
+
+Livro_020:
+  → Linha_Alt_Recursiva
+
+Livro_022:
+  → Linha_Alt_A
+
+Livro_023:
+  → Linha_Alt_A
+
+Livro_025:
+  → Linha_Alt_Omega
+
+Livro_029:
+  → Linha_Alt_A
+
+Livro_030:
+  → Linha_Alt_Omega
+
+Livro_031:
+  → Linha_Alt_Omega
+
+Livro_033:
+  → Linha_Alt_A
+
+Livro_034:
+  → Linha_Alt_A
+
+Livro_036:
+  → Linha_Alt_Recursiva
+
+Livro_037:
+  → Linha_Alt_A
+
+Livro_038:
+  → Linha_Alt_Recursiva
+
+Livro_039:
+  → Linha_Alt_A
+
+Livro_040:
+  → Linha_Alt_A
+
+Livro_043:
+  → Linha_Alt_Omega
+
+Livro_044:
+  → Linha_Alt_A
+
+Livro_046:
+  → Linha_Alt_Recursiva
+
+Livro_048:
+  → Linha_Alt_Recursiva
+
+Livro_049:
+  → Linha_Alt_A
+
+Livro_050:
+  → Linha_Alt_A
+
+Livro_052:
+  → Linha_Alt_A
+
+Livro_053:
+  → Linha_Alt_Omega
+
+Livro_Temporal_003:
+  → Linha_Delta_Alt
+
+Livro_Temporal_005:
+  → Linha_Gama_Alt
+
+Livro_Temporal_007:
+  → Linha_Delta_Alt
+
+Livro_Temporal_008:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_009:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_010:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_011:
+  → Linha_Delta_Alt
+
+Livro_Temporal_013:
+  → Linha_Delta_Alt
+
+Livro_Temporal_015:
+  → Linha_Gama_Alt
+
+Livro_Temporal_016:
+  → Linha_Gama_Alt
+
+Livro_Temporal_017:
+  → Linha_Gama_Alt
+
+Livro_Temporal_018:
+  → Linha_Delta_Alt
+
+Livro_Temporal_019:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_021:
+  → Linha_Delta_Alt
+
+Livro_Temporal_026:
+  → Linha_Gama_Alt
+
+Livro_Temporal_029:
+  → Linha_Delta_Alt
+
+Livro_Temporal_030:
+  → Linha_Gama_Alt
+
+Livro_Temporal_033:
+  → Linha_Delta_Alt
+
+Livro_Temporal_034:
+  → Linha_Delta_Alt
+
+Livro_Temporal_035:
+  → Linha_Delta_Alt
+
+Livro_Temporal_037:
+  → Linha_Delta_Alt
+
+Livro_Temporal_038:
+  → Linha_Delta_Alt
+
+Livro_Temporal_039:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_040:
+  → Linha_Gama_Alt
+
+Livro_Temporal_041:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_042:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_043:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_044:
+  → Linha_Gama_Alt
+
+Livro_Temporal_045:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_046:
+  → Linha_Delta_Alt
+
+Livro_Temporal_047:
+  → Linha_Gama_Alt
+
+Livro_Temporal_048:
+  → Linha_Epsilon_Alt
+
+Livro_Temporal_049:
+  → Linha_Delta_Alt
+
+Livro_Temporal_050:
+  → Linha_Delta_Alt
+
+======================================================================
+QUESTÃO 9 — Bibliotecários
+======================================================================
+Indique todos os bibliotecários e a biblioteca onde trabalham.
+
+Resultados: 12 bibliotecários
+
+1. Arnaldo → Biblioteca_Central_do_Tempo
+2. Aurelio → Cofre_do_Tempo_Perdido
+3. Boecio → Biblioteca_Infinita
+4. Cassiodoro → Biblioteca_Infinita
+5. Clarice → Arquivo_do_Vazio_Temporal
+6. Cronos → Biblioteca_Entre_Ontem_e_Amanha
+7. Dante_B → Biblioteca_Central_do_Tempo
+8. Eustachio → Arquivo_do_Vazio_Temporal
+9. Hypatia_II → Torre_do_Conhecimento
+10. Ptolomeu_X → Biblioteca_Infinita
+11. Sibilina → Biblioteca_Central_do_Tempo
+12. Zeno → Biblioteca_Infinita
+
+======================================================================
+QUESTÃO 10 — Livros escritos por Cronos
+======================================================================
+Liste todos os livros escritos por Cronos e indique em que linhas temporais esses livros existem.
+
+Resultados: 0 livros
+
+✗ Cronos não escreveu nenhum livro no dataset.
+
+======================================================================
+QUESTÃO BÔNUS 1 — Livros sem eventos referenciados
+======================================================================
+Identifique livros que não referem nenhum evento.
+
+Resultados: 0 livros
+
+✓ Todos os livros referem pelo menos um evento!
+
+======================================================================
+QUESTÃO BÔNUS 2 — Livros sem linha temporal
+======================================================================
+Verifique se existe algum livro sem linha temporal associada.
+
+Resultados: 0 livros
+
+✓ Todos os livros tém uma linha temporal associada!
+
+======================================================================
+QUESTÃO BÔNUS 3 — Autores que são também leitores
+======================================================================
+Identifique autores que sejam também leitores.
+
+Resultados: 0 pessoas
+
+✗ Nenhuma pessoa é simultaneamente Autor e Leitor.
+
+======================================================================
+QUESTÃO BÓNUS 4 — Autores de livros paradoxais (por quantidade)
+======================================================================
+Ordenar por ordem decrescente os autores que escreveram pelo menos um livro paradoxal.
+
+Resultados: 19 autores
+
+1. Autor_A — 5 livro(s) paradoxal(is)
+2. Autor_2 — 4 livro(s) paradoxal(is)
+3. Autor_9 — 3 livro(s) paradoxal(is)
+4. Autor_F — 3 livro(s) paradoxal(is)
+5. Autor_C — 3 livro(s) paradoxal(is)
+6. Autor_10 — 2 livro(s) paradoxal(is)
+7. Autor_4 — 2 livro(s) paradoxal(is)
+8. Autor_5 — 2 livro(s) paradoxal(is)
+9. Autor_3 — 2 livro(s) paradoxal(is)
+10. Autor_E — 2 livro(s) paradoxal(is)
+11. Autor_J — 2 livro(s) paradoxal(is)
+12. Autor_H — 2 livro(s) paradoxal(is)
+13. Autor_8 — 1 livro(s) paradoxal(is)
+14. Autor_7 — 1 livro(s) paradoxal(is)
+15. Autor_6 — 1 livro(s) paradoxal(is)
+16. Autor_1 — 1 livro(s) paradoxal(is)
+17. Autor_I — 1 livro(s) paradoxal(is)
+18. Autor_B — 1 livro(s) paradoxal(is)
+19. Autor_G — 1 livro(s) paradoxal(is)
+
+======================================================================
+✓ Todas as queries executadas com sucesso!
+======================================================================

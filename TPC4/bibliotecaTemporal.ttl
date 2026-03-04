@@ -1,0 +1,212 @@
+@prefix : <http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal/> .
+
+<http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#OcorreEm
+:OcorreEm rdf:type owl:ObjectProperty ;
+          rdfs:domain :Evento ;
+          rdfs:range :LinhaTemporal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#escreveu
+:escreveu rdf:type owl:ObjectProperty ;
+          owl:inverseOf :éEscritoPor .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#existeEm
+:existeEm rdf:type owl:ObjectProperty ;
+          rdfs:domain :Livro ;
+          rdfs:range :LinhaTemporal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#pertenteA
+:pertenteA rdf:type owl:ObjectProperty ;
+           rdfs:domain :Livro ;
+           rdfs:range :Biblioteca .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#refere
+:refere rdf:type owl:ObjectProperty ;
+        rdfs:domain :Livro ;
+        rdfs:range :Evento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#requisita
+:requisita rdf:type owl:ObjectProperty ;
+           rdfs:domain :Leitor ;
+           rdfs:range :Livro .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#trabalhaEm
+:trabalhaEm rdf:type owl:ObjectProperty ;
+            rdfs:domain :Bibliotecário ;
+            rdfs:range :Biblioteca .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#éEscritoPor
+:éEscritoPor rdf:type owl:ObjectProperty ;
+             rdfs:domain :Livro ;
+             rdfs:range :Autor .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Agente
+:Agente rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Autor
+:Autor rdf:type owl:Class ;
+       rdfs:subClassOf :Pessoa .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Biblioteca
+:Biblioteca rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Bibliotecário
+:Bibliotecário rdf:type owl:Class ;
+               owl:equivalentClass [ owl:intersectionOf ( :Pessoa
+                                                          [ rdf:type owl:Restriction ;
+                                                            owl:onProperty :trabalhaEm ;
+                                                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                            owl:onClass :Biblioteca
+                                                          ]
+                                                        ) ;
+                                     rdf:type owl:Class
+                                   ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#EntidadeTemporal
+:EntidadeTemporal rdf:type owl:Class ;
+                  rdfs:subClassOf :Agente .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Evento
+:Evento rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#EventoFuturo
+:EventoFuturo rdf:type owl:Class ;
+              rdfs:subClassOf :Evento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#EventoHistórico
+:EventoHistórico rdf:type owl:Class ;
+                 rdfs:subClassOf :Evento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Leitor
+:Leitor rdf:type owl:Class ;
+        rdfs:subClassOf :Pessoa .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LinhaAlternativa
+:LinhaAlternativa rdf:type owl:Class ;
+                  rdfs:subClassOf :LinhaTemporal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LinhaOriginal
+:LinhaOriginal rdf:type owl:Class ;
+               rdfs:subClassOf :LinhaTemporal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LinhaTemporal
+:LinhaTemporal rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Livro
+:Livro rdf:type owl:Class ;
+       owl:equivalentClass [ rdf:type owl:Restriction ;
+                             owl:onProperty :existeEm ;
+                             owl:someValuesFrom :LinhaTemporal
+                           ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LivroFiccional
+:LivroFiccional rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Livro
+                                                           [ rdf:type owl:Class ;
+                                                             owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                owl:onProperty :refere ;
+                                                                                owl:someValuesFrom :EventoHistórico
+                                                                              ]
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] ;
+                owl:disjointWith :LivroHistórico .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LivroHistórico
+:LivroHistórico rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Livro
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :refere ;
+                                                             owl:allValuesFrom :EventoHistórico
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#LivroParodoxal
+:LivroParodoxal rdf:type owl:Class ;
+                owl:equivalentClass [ owl:intersectionOf ( :Livro
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :existeEm ;
+                                                             owl:someValuesFrom :LinhaAlternativa
+                                                           ]
+                                                           [ rdf:type owl:Restriction ;
+                                                             owl:onProperty :existeEm ;
+                                                             owl:someValuesFrom :LinhaOriginal
+                                                           ]
+                                                         ) ;
+                                      rdf:type owl:Class
+                                    ] .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Pessoa
+:Pessoa rdf:type owl:Class ;
+        rdfs:subClassOf :Agente .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Biblioteca_Entre_Ontem_e_Amanha
+:Biblioteca_Entre_Ontem_e_Amanha rdf:type owl:NamedIndividual ,
+                                          :Biblioteca .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Cronos
+:Cronos rdf:type owl:NamedIndividual ,
+                 :Autor ,
+                 :Bibliotecário ;
+        :trabalhaEm :Biblioteca_Entre_Ontem_e_Amanha .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Linha_T0
+:Linha_T0 rdf:type owl:NamedIndividual ,
+                   :LinhaOriginal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/biblioteca_temporal#Linha_T1
+:Linha_T1 rdf:type owl:NamedIndividual ,
+                   :LinhaAlternativa .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi
