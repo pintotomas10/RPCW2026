@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}Linha Temporal {{ linha.id }}{% endblock %}
+
+{% block content %}
+<div class="w3-container w3-padding-32">
+    <div class="w3-container w3-teal w3-padding-16">
+        <h2><i class="fa fa-clock-o w3-margin-right"></i>Linha Temporal: {{ linha.id }}</h2>
+    </div>
+    <div class="w3-container w3-padding-32">
+        <a href="/linhas" class="w3-button w3-teal w3-margin-bottom"><i class="fa fa-arrow-left"></i> Voltar às Linhas</a>
+        <table class="w3-table-all w3-card-4 w3-hoverable">
+            <thead>
+                <tr class="w3-light-blue">
+                    <th>ID do Livro</th>
+                    <th>Título</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for livro in linha.livros %}
+                <tr>
+                    <td>
+                        <a href="/livro/{{ livro.id }}" class="w3-text-teal" style="text-decoration:none">
+                            {{ livro.id }}
+                        </a>
+                    </td>
+                    <td>{{ livro.titulo }}</td>
+                    <td>{{ livro.tipo }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/linhas" class="w3-button w3-teal w3-margin-bottom"><i class="fa fa-arrow-left"></i> Voltar às Linhas</a>
+    </div>
+</div>
+{% endblock %}

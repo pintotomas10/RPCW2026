@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}Eventos{% endblock %}
+
+{% block content %}
+<div class="w3-container w3-padding-32">
+    <div class="w3-container w3-teal w3-padding-16">
+        <h2><i class="fa fa-bolt w3-margin-right"></i>Eventos</h2>
+    </div>
+    <div class="w3-container w3-padding-32">
+        <table class="w3-table-all w3-card-4 w3-hoverable">
+            <thead>
+                <tr class="w3-light-blue">
+                    <th>ID</th>
+                    <th>Designação</th>
+                    <th>Descrição</th>
+                    <th>Livros que referem</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in eventos %}
+                <tr>
+                    <td>{{ e.id }}</td>
+                    <td>{{ e.designacao }}</td>
+                    <td>{{ e.desc }}</td>
+                    <td>
+                        {% if e.livros and e.livros|length > 0 and e.livros[0] != '' %}
+                            {% for lid in e.livros %}
+                                <a href="/livro/{{ lid }}" class="w3-text-teal" style="text-decoration:none"><b>{{ lid }}</b></a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <span class="w3-text-grey">Nenhum</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

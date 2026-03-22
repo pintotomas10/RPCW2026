@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Biblioteca Temporal{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='livro.png') }}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="w3-light-grey">
+
+    <div class="w3-bar w3-black">
+        <a href="/" class="w3-bar-item w3-button"><i class="fa fa-home"></i> Catálogo</a>
+        <a href="/linhas" class="w3-bar-item w3-button"><i class="fa fa-clock-o"></i> Linhas Temporais</a>
+        <a href="/eventos" class="w3-bar-item w3-button"><i class="fa fa-bolt"></i> Eventos</a>
+        <span class="w3-bar-item w3-right w3-hide-small">RPCW2026</span>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer class="w3-container w3-teal w3-padding-16 w3-margin-top">
+        <p class="w3-center">Sistema de Gestão de Ontologia - Biblioteca Temporal</p>
+    </footer>
+
+</body>
+</html>

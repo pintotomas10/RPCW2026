@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}Detalhes do Livro{% endblock %}
+
+{% block content %}
+    <div class="w3-container w3-padding-32">
+        {% if livro and livro.id %}
+            <div class="w3-card-4 w3-white w3-margin w3-padding-large" style="max-width:600px;margin:auto;">
+                <header class="w3-container w3-teal">
+                    <h2><i class="fa fa-book w3-margin-right"></i>{{ livro.titulo if livro.titulo else 'Sem título' }}</h2>
+                </header>
+                <div class="w3-container w3-padding">
+                    <p><b>ID:</b> {{ livro.id }}</p>
+                    <p><b>Tipo:</b> <span class="w3-tag w3-round w3-blue">{{ livro.tipo }}</span></p>
+                    <p><b>Autor:</b> {{ livro.autor }}</p>
+                    <p><b>País:</b> {{ livro.pais }}</p>
+                    <p><b>Linha temporal:</b>
+                        {% if livro.linha is string %}
+                            <a href="/linha/{{ livro.linha }}" class="w3-text-teal" style="text-decoration:none">{{ livro.linha }}</a>
+                        {% elif livro.linha is sequence %}
+                            {% for lid in livro.linha %}
+                                <a href="/linha/{{ lid }}" class="w3-text-teal" style="text-decoration:none">{{ lid }}</a>{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <span class="w3-text-grey">Nenhuma</span>
+                        {% endif %}
+                    </p>
+                </div>
+                {% if livro.nomeEvento %}
+                <div class="w3-container w3-padding">
+                    <h4><i class="fa fa-bolt w3-margin-right"></i>Evento Relacionado</h4>
+                    <p><b>ID Evento:</b> {{ livro.eventoID }}</p>
+                    <p><b>Nome:</b> {{ livro.nomeEvento }}</p>
+                    <p><b>Descrição:</b> {{ livro.desc }}</p>
+                </div>
+                {% endif %}
+                <div class="w3-container w3-padding">
+                    <a href="/" class="w3-button w3-teal w3-round"><i class="fa fa-arrow-left"></i> Voltar ao Catálogo <i class="fa fa-home"></i></a>
+                    <a href="/eventos" class="w3-button w3-teal w3-round"><i class="fa fa-arrow-left"></i> Voltar aos Eventos <i class="fa fa-bolt"></i></a>
+                    <br>
+                    <br>
+                    {% if livro.linha %}
+                        {% if livro.linha is string %}
+                            <a href="/linha/{{ livro.linha }}" class="w3-button w3-teal w3-round"><i class="fa fa-arrow-left"></i> Voltar à Linha <i class="fa fa-clock-o"></i></a>
+                        {% elif livro.linha is sequence %}
+                            {% for lid in livro.linha %}
+                                <a href="/linha/{{ lid }}" class="w3-button w3-teal w3-round" style="margin-bottom:4px;"><i class="fa fa-arrow-left"></i> Voltar à Linha {{ lid }} <i class="fa fa-clock-o"></i></a><br>
+                            {% endfor %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="w3-panel w3-red w3-center w3-padding-32">Livro não encontrado.</div>
+        {% endif %}
+    </div>
+{% endblock %}
