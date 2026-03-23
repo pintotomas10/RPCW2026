@@ -1,0 +1,119 @@
+11. Uma vez criada a ontologia (última versão: med_doentes.ttl), especifica queries SPARQL que permitam responder às seguintes questões:
+a) Quantas doenças estão presentes na ontologia?
+PREFIX : <http://www.example.org/disease-ontology#>
+select (count(?doenças) as ?nDoenças) where {
+    ?doenças a :Disease .
+}
+
+Resposta : 42
+
+b) Que doenças estão associadas ao sintoma "yellowish_skin"?
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?doenças where {
+    ?doenças a :Disease .
+    ?doenças :hasSymptom :yellowish_skin .
+} 
+
+Resposta :
+1 :Alcoholic_hepatitis
+2 :Chronic_cholestasis
+3 :Hepatitis_B
+4 :Hepatitis_C
+5 :Hepatitis_D
+6 :Hepatitis_E
+7 :Jaundice
+8 :hepatitis_A
+
+c) Que doenças estão associadas ao tratamento "exercise"?
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?doenças where {
+    ?doenças a :Disease .
+    ?doenças :hasTreatment :exercise .
+} 
+
+Resposta :
+1 :Arthritis
+2 :Cervical_spondylosis
+3 :Diabetes
+4 :GERD
+5 :Hypothyroidism
+6 :Paralysis_brain_hemorrhage
+
+d) Produz uma lista ordenada alfabeticamente com o nome dos doentes.
+PREFIX : <http://www.example.org/disease-ontology#>
+select ?nPaciente where {
+    ?paciente a :Patient .
+    ?paciente :name ?nPaciente
+} 
+order by ?nPaciente
+
+Resposta :
+1 "Aadeep Ascencoo"
+2 "Aadhira Bem-Haja"
+3 "Aadvik Grifo"
+4 "Aafiya Acafroo"
+...
+
+12. Cria uma query CONSTRUCT que diagnostique a doença de cada pessoa, ou seja, produza uma lista de triplos com a forma :patientX :hasDisease :diseaseY. No fim, acrescenta estes triplos à ontologia;
+PREFIX : <http://www.example.org/disease-ontology#>
+CONSTRUCT { ?paciente :hasDisease ?doenca . }
+WHERE {
+    ?paciente a :Patient .
+    ?doenca a :Disease .
+    FILTER NOT EXISTS {
+        ?doenca :hasSymptom ?sintomas .
+        FILTER NOT EXISTS {
+            ?paciente :exhibitsSymptom ?sintomas .
+        }
+    }
+}
+
+PREFIX : <http://www.example.org/disease-ontology#>
+INSERT { ?paciente :hasDisease ?doenca . }
+WHERE {
+    ?paciente a :Patient .
+    ?doenca a :Disease .
+    FILTER NOT EXISTS {
+        ?doenca :hasSymptom ?sintomas .
+        FILTER NOT EXISTS {
+            ?paciente :exhibitsSymptom ?sintomas .
+        }
+    }
+}
+
+13. Cria um query SPARQL que poduza uma distribuição dos doentes pelas doenças, ou seja, dá como resultado uma lista de pares (doença, nº de doentes);
+PREFIX : <http://www.example.org/disease-ontology#>
+SELECT ?doenças (COUNT(?paciente) AS ?numDoentes) WHERE {
+    ?paciente a :Patient ;
+             :hasDisease ?doenças .
+}
+GROUP BY ?doenças
+
+14. Cria um query SPARQL que poduza uma distribuição das doenças pelos sintomas, ou seja, dá como resultado uma lista de pares (sintoma, nº de doenças com o sintoma);
+PREFIX : <http://www.example.org/disease-ontology#>
+SELECT ?sintoma (COUNT(?doenca) AS ?numDoencas) WHERE {
+    ?doenca a :Disease ;
+             :hasSymptom ?sintoma .
+}
+GROUP BY ?sintoma
+ORDER BY DESC(?numDoencas)
+
+15. Cria um query SPARQL que poduza uma distribuição das doenças pelos tratamentos, ou seja, dá como resultado uma lista de pares (tratamento, nº de doenças com o tratamento);
+PREFIX : <http://www.example.org/disease-ontology#>
+SELECT ?tratamento (COUNT(?doenca) AS ?numDoencas) WHERE {
+    ?doenca a :Disease ;
+             :hasTreatment ?tratamento .
+}
+GROUP BY ?tratamento
+ORDER BY DESC(?numDoencas)
+
+16. Cria um query SPARQL que poduza uma lista das doenças e respetivos sintomas, ou seja, dá como resultado uma lista de pares (doença, lista de sintomas).
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <http://www.example.org/disease-ontology#>
+SELECT ?doença (GROUP_CONCAT(?nomeSintoma; separator=", ") AS ?listaSintomas) WHERE {
+    ?doença a :Disease ;
+             :hasSymptom ?sintoma .
+    bind(strafter(str(?sintoma), "#") as ?nomeSintoma)
+}
+GROUP BY ?doença
+ORDER BY ?doença
