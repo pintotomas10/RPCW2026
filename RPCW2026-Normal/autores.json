@@ -1,0 +1,137 @@
+[
+  {
+    "id": "klaus-teuber",
+    "name": "Klaus Teuber",
+    "designedGames": ["catan"]
+  },
+  {
+    "id": "alan-r-moon",
+    "name": "Alan R. Moon",
+    "designedGames": ["ticket-to-ride"]
+  },
+  {
+    "id": "jamey-stegmaier",
+    "name": "Jamey Stegmaier",
+    "designedGames": ["scythe"]
+  },
+  {
+    "id": "jacob-fryxelius",
+    "name": "Jacob Fryxelius",
+    "designedGames": ["terraforming-mars"]
+  },
+  {
+    "id": "michael-kiesling",
+    "name": "Michael Kiesling",
+    "designedGames": ["azul"]
+  },
+  {
+    "id": "isaac-childres",
+    "name": "Isaac Childres",
+    "designedGames": ["gloomhaven"]
+  },
+  {
+    "id": "klaus-jurgen-wrede",
+    "name": "Klaus-Jürgen Wrede",
+    "designedGames": ["carcassonne"]
+  },
+  {
+    "id": "matt-leacock",
+    "name": "Matt Leacock",
+    "designedGames": ["pandemic"]
+  },
+  {
+    "id": "elizabeth-hargrave",
+    "name": "Elizabeth Hargrave",
+    "designedGames": ["wingspan"]
+  },
+  {
+    "id": "vlaada-chvatil",
+    "name": "Vlaada Chvátil",
+    "designedGames": ["codenames"]
+  },
+  {
+    "id": "antoine-bauza",
+    "name": "Antoine Bauza",
+    "designedGames": ["7-wonders"]
+  },
+  {
+    "id": "marc-andre",
+    "name": "Marc André",
+    "designedGames": ["splendor"]
+  },
+  {
+    "id": "cole-wehrle",
+    "name": "Cole Wehrle",
+    "designedGames": ["root"]
+  },
+  {
+    "id": "james-a-wilson",
+    "name": "James A. Wilson",
+    "designedGames": ["everdell"]
+  },
+  {
+    "id": "martin-wallace",
+    "name": "Martin Wallace",
+    "designedGames": ["brass-birmingham"]
+  },
+  {
+    "id": "stefan-feld",
+    "name": "Stefan Feld",
+    "designedGames": ["castles-of-burgundy"]
+  },
+  {
+    "id": "randy-flynn",
+    "name": "Randy Flynn",
+    "designedGames": ["cascadia"]
+  },
+  {
+    "id": "eric-m-lang",
+    "name": "Eric M. Lang",
+    "designedGames": ["blood-rage"]
+  },
+  {
+    "id": "mathias-wigge",
+    "name": "Mathias Wigge",
+    "designedGames": ["ark-nova"]
+  },
+  {
+    "id": "r-eric-reuss",
+    "name": "R. Eric Reuss",
+    "designedGames": ["spirit-island"]
+  },
+  {
+    "id": "paul-dennen",
+    "name": "Paul Dennen",
+    "designedGames": ["dune-imperium"]
+  },
+  {
+    "id": "min-elwen",
+    "name": "Min & Elwen",
+    "designedGames": ["lost-ruins-of-arnak"]
+  },
+  {
+    "id": "donald-x-vaccarino",
+    "name": "Donald X. Vaccarino",
+    "designedGames": ["dominion"]
+  },
+  {
+    "id": "christian-t-petersen",
+    "name": "Christian T. Petersen",
+    "designedGames": ["twilight-imperium-4"]
+  },
+  {
+    "id": "uwe-rosenberg",
+    "name": "Uwe Rosenberg",
+    "designedGames": ["patchwork"]
+  },
+  {
+    "id": "richard-garfield",
+    "name": "Richard Garfield",
+    "designedGames": ["king-of-tokyo"]
+  },
+  {
+    "id": "andreas-seyfarth",
+    "name": "Andreas Seyfarth",
+    "designedGames": ["puerto-rico"]
+  }
+]

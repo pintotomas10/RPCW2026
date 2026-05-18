@@ -1,0 +1,92 @@
+[
+  {
+    "id": "route-building",
+    "name": "Route Building",
+    "usedInGames": ["catan", "ticket-to-ride"]
+  },
+  {
+    "id": "engine-building",
+    "name": "Engine Building",
+    "usedInGames": ["scythe", "terraforming-mars"]
+  },
+  {
+    "id": "tile-placement",
+    "name": "Tile Placement",
+    "usedInGames": ["azul", "terraforming-mars", "carcassonne", "catan"]
+  },
+  {
+    "id": "hand-management",
+    "name": "Hand Management",
+    "usedInGames": ["ticket-to-ride", "terraforming-mars", "gloomhaven"]
+  },
+  {
+    "id": "grid-movement",
+    "name": "Grid Movement",
+    "usedInGames": ["scythe", "gloomhaven"]
+  },
+  {
+    "id": "variable-player-powers",
+    "name": "Variable Player Powers",
+    "usedInGames": ["scythe", "terraforming-mars", "gloomhaven"]
+  },
+  {
+    "id": "cooperative-game",
+    "name": "Cooperative Game",
+    "usedInGames": ["gloomhaven"]
+  },
+  {
+    "id": "deck-building",
+    "name": "Deck, Bag, and Pool Building",
+    "usedInGames": ["dominion", "dune-imperium", "lost-ruins-of-arnak", "ark-nova"]
+  },
+  {
+    "id": "worker-placement",
+    "name": "Worker Placement",
+    "usedInGames": ["everdell", "dune-imperium", "lost-ruins-of-arnak"]
+  },
+  {
+    "id": "card-drafting",
+    "name": "Card Drafting",
+    "usedInGames": ["7-wonders", "wingspan", "blood-rage"]
+  },
+  {
+    "id": "dice-rolling",
+    "name": "Dice Rolling",
+    "usedInGames": ["catan","king-of-tokyo", "castles-of-burgundy"]
+  },
+  {
+    "id": "network-building",
+    "name": "Network and Route Building",
+    "usedInGames": ["brass-birmingham"]
+  },
+  {
+    "id": "tile-placement",
+    "name": "Tile Placement",
+    "usedInGames": ["cascadia", "patchwork", "castles-of-burgundy"]
+  },
+  {
+    "id": "variable-player-powers",
+    "name": "Variable Player Powers",
+    "usedInGames": ["root", "spirit-island", "twilight-imperium-4", "pandemic", "blood-rage"]
+  },
+  {
+    "id": "set-collection",
+    "name": "Set Collection",
+    "usedInGames": ["ticket-to-ride", "azul", "terraforming-mars","splendor", "wingspan", "pandemic"]
+  },
+  {
+    "id": "cooperative-game",
+    "name": "Cooperative Game",
+    "usedInGames": ["pandemic", "spirit-island"]
+  },
+  {
+    "id": "area-majority",
+    "name": "Area Majority / Influence",
+    "usedInGames": ["carcassonne", "scythe","blood-rage", "root", "twilight-imperium-4"]
+  },
+  {
+    "id": "push-your-luck",
+    "name": "Push Your Luck",
+    "usedInGames": ["codenames", "king-of-tokyo"]
+  }
+]

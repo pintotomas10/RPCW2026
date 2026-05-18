@@ -1,0 +1,31 @@
+Queries
+
+1. Quais são as personagens presentes na história e a que espécie animal pertencem?
+PREFIX : <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/>
+SELECT ?nomePersonagem ?especie WHERE {
+    ?p a :Animal .
+    ?p :nome ?nomePersonagem .
+    ?p :espécie ?especie
+}
+
+2. Que objeto possuía o Corvo no início da história e onde ele estava localizado?
+PREFIX : <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/>
+SELECT ?nomeObjeto ?nomeLocal WHERE {
+    :Mestre_Corvo :segura ?objeto .
+    ?objeto :nome ?nomeObjeto .
+    :Mestre_Corvo :localizadoEm ?local .
+    ?local :nome ?nomeLocal .
+}
+
+3. Quais são as características ou sentimentos associados à personagem "Raposa"?
+PREFIX : <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/>
+SELECT ?s WHERE {
+    :Mestre_Raposa :sente ?s .
+}
+
+4. Que personagem enganou o Corvo? (Recupera a relação de interação criada entre os dois indivíduos). 
+PREFIX : <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/>
+SELECT ?nomeEnganador WHERE {
+    ?enganador :enganou :Mestre_Corvo .
+    ?enganador :nome ?nomeEnganador .
+}

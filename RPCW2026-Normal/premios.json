@@ -1,0 +1,92 @@
+[
+  {
+    "id": "sdj-1995",
+    "name": "Spiel des Jahres",
+    "year": 1995,
+    "wonByGame": "catan"
+  },
+  {
+    "id": "sdj-2001",
+    "name": "Spiel des Jahres",
+    "year": 2001,
+    "wonByGame": "carcassonne"
+  },
+  {
+    "id": "sdj-2004",
+    "name": "Spiel des Jahres",
+    "year": 2004,
+    "wonByGame": "ticket-to-ride"
+  },
+  {
+    "id": "sdj-2018",
+    "name": "Spiel des Jahres",
+    "year": 2018,
+    "wonByGame": "azul"
+  },
+  {
+    "id": "dsp-2017",
+    "name": "Deutscher Spiele Preis",
+    "year": 2017,
+    "wonByGame": "terraforming-mars"
+  },
+  {
+    "id": "gg-2016",
+    "name": "Golden Geek Board Game of the Year",
+    "year": 2016,
+    "wonByGame": "scythe"
+  },
+  {
+    "id": "gg-2017",
+    "name": "Golden Geek Board Game of the Year",
+    "year": 2017,
+    "wonByGame": "gloomhaven"
+  },
+  {
+    "id": "sdj-2009",
+    "name": "Spiel des Jahres",
+    "year": 2009,
+    "wonByGame": "dominion"
+  },
+  {
+    "id": "sdj-2016",
+    "name": "Spiel des Jahres",
+    "year": 2016,
+    "wonByGame": "codenames"
+  },
+  {
+    "id": "sdj-2022",
+    "name": "Spiel des Jahres",
+    "year": 2022,
+    "wonByGame": "cascadia"
+  },
+  {
+    "id": "ksdj-2019",
+    "name": "Kennerspiel des Jahres",
+    "year": 2019,
+    "wonByGame": "wingspan"
+  },
+  {
+    "id": "dsp-2011",
+    "name": "Deutscher Spiele Preis",
+    "year": 2011,
+    "wonByGame": "7-wonders"
+  },
+  {
+    "id": "dsp-2022",
+    "name": "Deutscher Spiele Preis",
+    "year": 2022,
+    "wonByGame": "ark-nova"
+  },
+  {
+    "id": "gg-2013",
+    "name": "Golden Geek Board Game of the Year",
+    "year": 2013,
+    "wonByGame": "pandemic"
+  },
+  {
+    "id": "gg-2018",
+    "name": "Golden Geek Board Game of the Year",
+    "year": 2018,
+    "wonByGame": "root"
+  }
+]

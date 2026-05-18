@@ -1,0 +1,131 @@
+12. Quais são os jogos criados por um determinado autor (arbitra um nome, ex: "Klaus Teuber")?
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?jogo ?nomeJogo WHERE {
+    ?autor a :Autor .
+    ?autor :nome "Klaus Teuber" .
+    ?autor :desenhou ?jogo .
+    ?jogo :nome ?nomeJogo .
+}
+
+13. Quais os prémios ganhos por um determinado jogo?
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?nomeJogo ?nomePremio WHERE {
+    ?premio a :Premio .
+    ?premio :ganhoPor ?jogo .
+    ?jogo :nome ?nomeJogo .
+    ?premio :nome ?nomePremio .
+}
+ORDER BY ?nomeJogo
+
+14. Que jogos pertencem à categoria Family?
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?nomeJogo WHERE {
+    ?jogo a :Jogo .
+    ?jogo :categoria "Family" .
+    ?jogo :nome ?nomeJogo .
+    BIND(STRAFTER(STR(?jogo), "#") AS ?jogoID)
+}
+
+15. Que jogos demoram mais de 60 minutos a jogar (playingTimeMinutes)?
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+SELECT ?nomeJogo WHERE {
+    ?jogo a :Jogo .
+    ?jogo :tempoJogoMin ?tempoMinutos .
+    FILTER(?tempoMinutos > 60)
+    ?jogo :nome ?nomeJogo .
+}
+
+16. Em que jogos entra a mecânica Dice Rolling?
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?Jogo WHERE {
+    ?mecanica a :Mecanica .
+    ?mecanica :nome "Dice Rolling" .
+    ?mecanica :usadaEm ?jogo .
+    ?jogo :nome ?Jogo .
+}
+
+17. Qual a distribuição de jogos por editora, ordenada descendentemente pela quantidade de jogos? (O resultado será uma lista de pares: Editora, número de jogos que publicou)
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?nomeEditora (COUNT(?jogo) AS ?numJogos) WHERE {
+    ?editora a :Editora .
+    ?editora :nome ?nomeEditora .
+    ?editora :publicou ?jogo .
+}
+GROUP BY ?nomeEditora
+ORDER BY DESC(?numJogos) ?nomeEditora
+
+18. Qual a distribuição de jogos por categoria? (o resultado será uma lista de pares: Categoria, número de jogos)
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?categoria (COUNT(?jogo) AS ?numJogos) WHERE {
+    ?jogo a :Jogo .
+    ?jogo :categoria ?categoria .
+}
+GROUP BY ?categoria
+ORDER BY DESC(?numJogos) ?categoria
+
+19. Quais os jogos com mecânicas mais complexas? (o resultado será uma lista de jogos: id, nome e lista de mecânicas, apenas para jogos que têm mais de 3 mecânicas associadas)
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT ?jogoID ?nomeJogo (GROUP_CONCAT(?nomeMecanica; separator=", ") AS ?listaMecanicas) WHERE {
+    ?jogo a :Jogo .
+    ?jogo :nome ?nomeJogo .
+    BIND(STRAFTER(STR(?jogo), "#") AS ?jogoID)
+    ?mecanica a :Mecanica .
+    ?mecanica :usadaEm ?jogo .
+    ?mecanica :nome ?nomeMecanica .
+}
+GROUP BY ?jogoID ?nomeJogo
+HAVING (COUNT(?mecanica) > 3)
+ORDER BY ?nomeJogo
+
+20. Uma ludoteca escolar quer planear um evento e precisa da lista completa de autores e mecânicas envolvidas se utilizarem exclusivamente jogos da categoria Family. Produz uma lista sem repetições que inclua o nome do jogo, o nome dos seus criadores e as suas mecânicas.
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+SELECT DISTINCT ?nomeJogo (GROUP_CONCAT(DISTINCT ?nomeAutor; separator=", ") AS ?criadores) (GROUP_CONCAT(DISTINCT ?nomeMecanica; separator=", ") AS ?mecanicas) WHERE {
+    ?jogo a :Jogo ;
+     :categoria "Family" ;
+     :nome ?nomeJogo .
+    ?autor a :Autor ;
+     :desenhou ?jogo ;
+     :nome ?nomeAutor .
+    ?mecanica a :Mecanica ;
+     :usadaEm ?jogo ;
+     :nome ?nomeMecanica .
+}
+GROUP BY ?nomeJogo
+ORDER BY ?nomeJogo
+
+21. Cria uma nova relação na ontologia, isPublishedBy, que relaciona diretamente um jogo com a sua editora (o inverso da relação atual, caso tenhas seguido a orientação em editoras.json);
+22. Cria uma query CONSTRUCT para calcular os novos triplos da nova relação isPublishedBy; Altera a query para uma query INSERT e acrescenta esses triplos à ontologia;
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+CONSTRUCT {
+    ?jogo :isPublishedBy ?editora .
+} WHERE {
+    ?editora a :Editora .
+    ?editora :publicou ?jogo .
+}
+
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+INSERT {
+    ?jogo :isPublishedBy ?editora .
+} WHERE {
+    ?editora a :Editora .
+    ?editora :publicou ?jogo .
+}
+
+23. Cria uma nova relação na ontologia, hasMechanic, que relaciona um jogo com uma mecânica (o inverso da relação sugerida em mecanicas.json);
+24. Cria uma query CONSTRUCT para calcular os novos triplos da nova relação hasMechanic; Altera a query para uma query INSERT e acrescenta esses triplos à ontologia.
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+CONSTRUCT {
+    ?jogo :hasMechanic ?mecanica .
+} WHERE {
+    ?mecanica a :Mecanica .
+    ?mecanica :usadaEm ?jogo .
+}
+
+PREFIX : <http://www.di.uminho.pt/rpcw2026/A104448#>
+INSERT {
+    ?jogo :hasMechanic ?mecanica .
+} WHERE {
+    ?mecanica a :Mecanica .
+    ?mecanica :usadaEm ?jogo .
+}

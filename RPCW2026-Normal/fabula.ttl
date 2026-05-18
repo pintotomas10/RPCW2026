@@ -1,0 +1,155 @@
+@prefix : <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/utilizador/ontologies/2026/fabula/> .
+
+<http://www.semanticweb.org/utilizador/ontologies/2026/fabula> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#enganou
+:enganou rdf:type owl:ObjectProperty ;
+         rdfs:domain :Animal ;
+         rdfs:range :Animal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#localizadoEm
+:localizadoEm rdf:type owl:ObjectProperty ;
+              rdfs:domain :Animal ;
+              rdfs:range :Local .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#segura
+:segura rdf:type owl:ObjectProperty ;
+        rdfs:domain :Animal ;
+        rdfs:range :Objeto .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#sente
+:sente rdf:type owl:ObjectProperty ;
+       rdfs:domain :Animal ;
+       rdfs:range :Sentimento .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#espécie
+:espécie rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Animal ;
+         rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#nome
+:nome rdf:type owl:DatatypeProperty ;
+      rdfs:domain owl:Thing ;
+      rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Animal
+:Animal rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Corvo
+:Corvo rdf:type owl:Class ;
+       rdfs:subClassOf :Animal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Local
+:Local rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Objeto
+:Objeto rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Raposa
+:Raposa rdf:type owl:Class ;
+        rdfs:subClassOf :Animal .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Sentimento
+:Sentimento rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Astucia
+:Astucia rdf:type owl:NamedIndividual ,
+                  :Sentimento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Base_Árvore
+:Base_Árvore rdf:type owl:NamedIndividual ,
+                      :Local ;
+             :nome "Base da Árvore" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Confusão
+:Confusão rdf:type owl:NamedIndividual ,
+                   :Sentimento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Mestre_Corvo
+:Mestre_Corvo rdf:type owl:NamedIndividual ,
+                       :Corvo ;
+              :localizadoEm :Ramo_Árvore ;
+              :segura :Queijo_Apetitoso ;
+              :sente :Confusão ,
+                     :Vaidade ,
+                     :Vergonha ;
+              :espécie "Corvo" ;
+              :nome "Mestre Corvo" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Mestre_Raposa
+:Mestre_Raposa rdf:type owl:NamedIndividual ,
+                        :Raposa ;
+               :enganou :Mestre_Corvo ;
+               :localizadoEm :Base_Árvore ;
+               :sente :Astucia ,
+                      :Orgulho ;
+               :espécie "Raposa" ;
+               :nome "Mestre Raposa" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Orgulho
+:Orgulho rdf:type owl:NamedIndividual ,
+                  :Sentimento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Queijo_Apetitoso
+:Queijo_Apetitoso rdf:type owl:NamedIndividual ,
+                           :Objeto ;
+                  :nome "Queijo Apetitoso" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Ramo_Árvore
+:Ramo_Árvore rdf:type owl:NamedIndividual ,
+                      :Local ;
+             :nome "Ramo de uma alta árvore" .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Vaidade
+:Vaidade rdf:type owl:NamedIndividual ,
+                  :Sentimento .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/fabula#Vergonha
+:Vergonha rdf:type owl:NamedIndividual ,
+                   :Sentimento .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

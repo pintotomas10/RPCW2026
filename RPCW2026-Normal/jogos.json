@@ -1,0 +1,245 @@
+[
+  {
+    "id": "catan",
+    "name": "Catan",
+    "category": "Family",
+    "minPlayers": 3,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Players take on the roles of settlers, each attempting to build and develop holdings while trading and acquiring resources."
+  },
+  {
+    "id": "ticket-to-ride",
+    "name": "Ticket to Ride",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 60,
+    "descriptionEN": "Players collect cards of various types of train cars they then use to claim railway routes in North America."
+  },
+  {
+    "id": "scythe",
+    "name": "Scythe",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 115,
+    "descriptionEN": "An engine-building, asymmetric, competitive board game set in an alternate-history 1920s period."
+  },
+  {
+    "id": "terraforming-mars",
+    "name": "Terraforming Mars",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Players control corporations and buy and play cards to terraform the planet Mars."
+  },
+  {
+    "id": "azul",
+    "name": "Azul",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 45,
+    "descriptionEN": "Players take turns drafting colored tiles from suppliers to their player board to score points."
+  },
+  {
+    "id": "gloomhaven",
+    "name": "Gloomhaven",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "A cooperative game of tactical combat in a unique, evolving fantasy world."
+  },
+  {
+    "id": "carcassonne",
+    "name": "Carcassonne",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 45,
+    "descriptionEN": "Players draw and place a tile with a piece of southern French landscape on it."
+  },
+  {
+    "id": "pandemic",
+    "name": "Pandemic",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 45,
+    "descriptionEN": "Your team of experts must prevent the world from succumbing to a viral pandemic."
+  },
+  {
+    "id": "wingspan",
+    "name": "Wingspan",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 70,
+    "descriptionEN": "Attract a beautiful and diverse collection of birds to your wildlife preserve."
+  },
+  {
+    "id": "codenames",
+    "name": "Codenames",
+    "category": "Party",
+    "minPlayers": 2,
+    "maxPlayers": 8,
+    "playingTimeMinutes": 15,
+    "descriptionEN": "Give your team clever one-word clues to help them spot their agents in the field."
+  },
+  {
+    "id": "7-wonders",
+    "name": "7 Wonders",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 7,
+    "playingTimeMinutes": 30,
+    "descriptionEN": "Draft cards to develop your ancient civilization and build its Wonder of the World."
+  },
+  {
+    "id": "splendor",
+    "name": "Splendor",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 30,
+    "descriptionEN": "Renaissance merchants race to grab gems, acquire property, and please nobility."
+  },
+  {
+    "id": "root",
+    "name": "Root",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 90,
+    "descriptionEN": "A game of woodland might and right, with highly asymmetric factions."
+  },
+  {
+    "id": "everdell",
+    "name": "Everdell",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 80,
+    "descriptionEN": "A game of dynamic tableau building and worker placement in a charming forest."
+  },
+  {
+    "id": "brass-birmingham",
+    "name": "Brass: Birmingham",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Build networks, grow industries, and navigate the world of the Industrial Revolution."
+  },
+  {
+    "id": "castles-of-burgundy",
+    "name": "The Castles of Burgundy",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 90,
+    "descriptionEN": "Plan, trade, and build your Burgundian estate to prosperity and prominence."
+  },
+  {
+    "id": "cascadia",
+    "name": "Cascadia",
+    "category": "Family",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 45,
+    "descriptionEN": "Create the most harmonious ecosystem as you draft habitats and wildlife."
+  },
+  {
+    "id": "blood-rage",
+    "name": "Blood Rage",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 90,
+    "descriptionEN": "Ragnarök has come! Draft cards, lead your Viking clan to glory, and die in battle."
+  },
+  {
+    "id": "ark-nova",
+    "name": "Ark Nova",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 150,
+    "descriptionEN": "Plan and design a modern, scientifically managed zoo to support conservation projects."
+  },
+  {
+    "id": "spirit-island",
+    "name": "Spirit Island",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Island Spirits join forces to defend their home from colonizing Invaders."
+  },
+  {
+    "id": "dune-imperium",
+    "name": "Dune: Imperium",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Influence, intrigue, and combat in the universe of Dune using deck-building and worker placement."
+  },
+  {
+    "id": "lost-ruins-of-arnak",
+    "name": "Lost Ruins of Arnak",
+    "category": "Strategy",
+    "minPlayers": 1,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 120,
+    "descriptionEN": "Explore a mysterious island, discover artifacts, and face formidable guardians."
+  },
+  {
+    "id": "dominion",
+    "name": "Dominion",
+    "category": "Strategy",
+    "minPlayers": 2,
+    "maxPlayers": 4,
+    "playingTimeMinutes": 30,
+    "descriptionEN": "Acquire lands, hire subjects, and build the ultimate deck to rule your kingdom."
+  },
+  {
+    "id": "twilight-imperium-4",
+    "name": "Twilight Imperium: Fourth Edition",
+    "category": "Strategy",
+    "minPlayers": 3,
+    "maxPlayers": 6,
+    "playingTimeMinutes": 480,
+    "descriptionEN": "Build an empire through trade, politics, and warfare in a galaxy-spanning space opera."
+  },
+  {
+    "id": "patchwork",
+    "name": "Patchwork",
+    "category": "Family",
+    "minPlayers": 2,
+    "maxPlayers": 2,
+    "playingTimeMinutes": 30,
+    "descriptionEN": "Compete to build the most aesthetic (and high-scoring) patchwork quilt."
+  },
+  {
+    "id": "king-of-tokyo",
+    "name": "King of Tokyo",
+    "category": "Party",
+    "minPlayers": 2,
+    "maxPlayers": 6,
+    "playingTimeMinutes": 30,
+    "descriptionEN": "Mutant monsters, gigantic robots, and fierce aliens battle for control of Tokyo."
+  },
+  {
+    "id": "puerto-rico",
+    "name": "Puerto Rico",
+    "category": "Strategy",
+    "minPlayers": 3,
+    "maxPlayers": 5,
+    "playingTimeMinutes": 150,
+    "descriptionEN": "Ship goods, construct buildings, and choose roles to become the most prosperous in Puerto Rico."
+  }
+]

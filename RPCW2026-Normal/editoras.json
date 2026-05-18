@@ -1,0 +1,146 @@
+[
+  {
+    "id": "kosmos",
+    "name": "KOSMOS",
+    "country": "Germany",
+    "publishedGames": ["catan"]
+  },
+  {
+    "id": "days-of-wonder",
+    "name": "Days of Wonder",
+    "country": "France",
+    "publishedGames": ["ticket-to-ride"]
+  },
+  {
+    "id": "stonemaier-games",
+    "name": "Stonemaier Games",
+    "country": "USA",
+    "publishedGames": ["scythe","wingspan"]
+  },
+  {
+    "id": "fryxgames",
+    "name": "FryxGames",
+    "country": "Sweden",
+    "publishedGames": ["terraforming-mars"]
+  },
+  {
+    "id": "plan-b-games",
+    "name": "Plan B Games",
+    "country": "Canada",
+    "publishedGames": ["azul"]
+  },
+  {
+    "id": "cephalofair",
+    "name": "Cephalofair Games",
+    "country": "USA",
+    "publishedGames": ["gloomhaven"]
+  },
+  {
+    "id": "hans-im-gluck",
+    "name": "Hans im Glück",
+    "country": "Germany",
+    "publishedGames": ["carcassonne"]
+  },
+  {
+    "id": "z-man-games",
+    "name": "Z-Man Games",
+    "country": "USA",
+    "publishedGames": ["pandemic"]
+  },
+  {
+    "id": "czech-games-edition",
+    "name": "Czech Games Edition",
+    "country": "Czech Republic",
+    "publishedGames": ["codenames", "lost-ruins-of-arnak"]
+  },
+  {
+    "id": "repos-production",
+    "name": "Repos Production",
+    "country": "Belgium",
+    "publishedGames": ["7-wonders"]
+  },
+  {
+    "id": "space-cowboys",
+    "name": "Space Cowboys",
+    "country": "France",
+    "publishedGames": ["splendor"]
+  },
+  {
+    "id": "leder-games",
+    "name": "Leder Games",
+    "country": "USA",
+    "publishedGames": ["root"]
+  },
+  {
+    "id": "starling-games",
+    "name": "Starling Games",
+    "country": "USA",
+    "publishedGames": ["everdell"]
+  },
+  {
+    "id": "roxley",
+    "name": "Roxley",
+    "country": "Canada",
+    "publishedGames": ["brass-birmingham"]
+  },
+  {
+    "id": "ravensburger",
+    "name": "Ravensburger",
+    "country": "Germany",
+    "publishedGames": ["castles-of-burgundy", "puerto-rico"]
+  },
+  {
+    "id": "flatout-games",
+    "name": "Flatout Games",
+    "country": "USA",
+    "publishedGames": ["cascadia"]
+  },
+  {
+    "id": "cmon",
+    "name": "CMON",
+    "country": "Singapore",
+    "publishedGames": ["blood-rage"]
+  },
+  {
+    "id": "feuerland-spiele",
+    "name": "Feuerland Spiele",
+    "country": "Germany",
+    "publishedGames": ["ark-nova"]
+  },
+  {
+    "id": "greater-than-games",
+    "name": "Greater Than Games",
+    "country": "USA",
+    "publishedGames": ["spirit-island"]
+  },
+  {
+    "id": "dire-wolf",
+    "name": "Dire Wolf",
+    "country": "USA",
+    "publishedGames": ["dune-imperium"]
+  },
+  {
+    "id": "rio-grande-games",
+    "name": "Rio Grande Games",
+    "country": "USA",
+    "publishedGames": ["dominion"]
+  },
+  {
+    "id": "fantasy-flight-games",
+    "name": "Fantasy Flight Games",
+    "country": "USA",
+    "publishedGames": ["twilight-imperium-4"]
+  },
+  {
+    "id": "lookout-games",
+    "name": "Lookout Games",
+    "country": "Germany",
+    "publishedGames": ["patchwork"]
+  },
+  {
+    "id": "iello",
+    "name": "IELLO",
+    "country": "France",
+    "publishedGames": ["king-of-tokyo"]
+  }
+]
