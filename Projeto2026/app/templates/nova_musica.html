@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:800px">
+    
+    <header class="w3-container w3-indigo w3-padding-32 w3-round-large w3-card-4">
+        <h1 class="w3-xlarge"><i class="fa fa-music w3-margin-right"></i>Nova Música para {{ ano }}</h1>
+        <p class="w3-opacity">Registe uma nova canção e os seus respetivos autores e intérpretes.</p>
+    </header>
+
+    <div class="w3-padding-16">
+        <a href="/edicao/{{ ano }}" class="w3-button w3-white w3-border w3-round-large w3-hover-indigo">
+            <i class="fa fa-arrow-left"></i> Voltar à Edição
+        </a>
+    </div>
+
+    {% if sucesso %}
+    <div class="w3-panel w3-green w3-round w3-animate-top">
+        <p><i class="fa fa-check-circle w3-margin-right"></i>{{ sucesso }}</p>
+    </div>
+    {% endif %}
+
+    {% if erro %}
+    <div class="w3-panel w3-red w3-round w3-animate-top">
+        <p><i class="fa fa-warning w3-margin-right"></i>{{ erro }}</p>
+    </div>
+    {% endif %}
+
+    <div class="w3-card-4 w3-white w3-round-large">
+        <form method="POST" class="w3-container w3-padding-24">
+            
+            <div class="w3-section">
+                <label class="w3-text-indigo"><b>Título da Canção</b></label>
+                <input class="w3-input w3-border w3-round" name="titulo" type="text" placeholder="Ex: Amar pelos Dois" required>
+            </div>
+
+            <div class="w3-section">
+                <label class="w3-text-indigo"><b>Intérprete / Artista</b></label>
+                <input class="w3-input w3-border w3-round" name="artista" type="text" placeholder="Ex: Salvador Sobral" required>
+            </div>
+
+            <div class="w3-row-padding" style="margin:0 -16px;">
+                <div class="w3-half">
+                    <label class="w3-text-indigo"><b>Compositores</b></label>
+                    <textarea class="w3-input w3-border w3-round" name="compositores" rows="3" 
+                              placeholder="Nomes separados por vírgula"></textarea>
+                </div>
+                <div class="w3-half">
+                    <label class="w3-text-indigo"><b>Letristas (Liricistas)</b></label>
+                    <textarea class="w3-input w3-border w3-round" name="liricistas" rows="3" 
+                              placeholder="Nomes separados por vírgula"></textarea>
+                </div>
+            </div>
+
+            <div class="w3-margin-top">
+                <button type="submit" class="w3-button w3-indigo w3-block w3-round-large w3-padding-large w3-hover-amber">
+                    <b><i class="fa fa-plus-circle w3-margin-right"></i>ADICIONAR CANÇÃO</b>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    body { background-color: #f8f9fa; }
+    .w3-input:focus { border-bottom: 2px solid #3f51b5 !important; outline: none; }
+    label { font-size: 0.9em; }
+</style>
+{% endblock %}

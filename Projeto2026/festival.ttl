@@ -1,0 +1,215 @@
+@prefix : <http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/> .
+
+<http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao> rdf:type owl:Ontology ;
+                                                                            rdfs:comment "Uma ontologia sobre o festival da canção" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/belongsToEdition
+:belongsToEdition rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :hasContestant ;
+                  rdfs:domain :Contestant ;
+                  rdfs:range :FestivalEdition .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasComposer
+:hasComposer rdf:type owl:ObjectProperty ;
+             rdfs:domain :Song ;
+             rdfs:range :Composer .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasContestant
+:hasContestant rdf:type owl:ObjectProperty ;
+               rdfs:domain :FestivalEdition ;
+               rdfs:range :Contestant .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasLyricist
+:hasLyricist rdf:type owl:ObjectProperty ;
+             rdfs:domain :Song ;
+             rdfs:range :Lyricist .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasMusicDirector
+:hasMusicDirector rdf:type owl:ObjectProperty ;
+                  rdfs:domain :FestivalEdition ;
+                  rdfs:range :MusicDirector .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasPhase
+:hasPhase rdf:type owl:ObjectProperty ;
+          rdfs:domain :FestivalEdition ;
+          rdfs:range :FestivalPhase .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasPresenter
+:hasPresenter rdf:type owl:ObjectProperty ;
+              rdfs:domain :FestivalPhase ;
+              rdfs:range :Presenter .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/hasWinner
+:hasWinner rdf:type owl:ObjectProperty ;
+           rdfs:domain :FestivalEdition ;
+           rdfs:range :Song .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/heldAt
+:heldAt rdf:type owl:ObjectProperty ;
+        rdfs:domain :FestivalPhase ;
+        rdfs:range :Venue .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/locatedIn
+:locatedIn rdf:type owl:ObjectProperty ;
+           rdfs:domain :Venue ;
+           rdfs:range :City .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/performedBy
+:performedBy rdf:type owl:ObjectProperty ;
+             rdfs:domain :Song ;
+             rdfs:range :Contestant ;
+             owl:inverseOf :performsSong .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/performsSong
+:performsSong rdf:type owl:ObjectProperty ;
+              rdfs:domain :Contestant ;
+              rdfs:range :Song .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/cityName
+:cityName rdf:type owl:DatatypeProperty ;
+          rdfs:domain :City ;
+          rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/contestantId
+:contestantId rdf:type owl:DatatypeProperty ;
+              rdfs:domain :Contestant ;
+              rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/editionYear
+:editionYear rdf:type owl:DatatypeProperty ;
+             rdfs:domain :FestivalEdition ;
+             rdfs:range xsd:int .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/eurovisionResult
+:eurovisionResult rdf:type owl:DatatypeProperty ;
+                  rdfs:domain :Song ;
+                  rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/personName
+:personName rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Person ;
+            rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/phaseDate
+:phaseDate rdf:type owl:DatatypeProperty ;
+           rdfs:domain :FestivalPhase ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/songTitle
+:songTitle rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Song ;
+           rdfs:range xsd:string .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/venueName
+:venueName rdf:type owl:DatatypeProperty ;
+           rdfs:domain :Venue ;
+           rdfs:range xsd:string .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao#Artist
+:Artist rdf:type owl:Class ;
+        rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/City
+:City rdf:type owl:Class ;
+      rdfs:subClassOf :Location .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Composer
+:Composer rdf:type owl:Class ;
+          rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Contestant
+:Contestant rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/FestivalEdition
+:FestivalEdition rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/FestivalPhase
+:FestivalPhase rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Final
+:Final rdf:type owl:Class ;
+       rdfs:subClassOf :FestivalPhase .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Location
+:Location rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Lyricist
+:Lyricist rdf:type owl:Class ;
+          rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/MusicDirector
+:MusicDirector rdf:type owl:Class ;
+               rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Person
+:Person rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Presenter
+:Presenter rdf:type owl:Class ;
+           rdfs:subClassOf :Person .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/SemiFinal
+:SemiFinal rdf:type owl:Class ;
+           rdfs:subClassOf :FestivalPhase .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Song
+:Song rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/utilizador/ontologies/2026/festival_da_cancao/Venue
+:Venue rdf:type owl:Class ;
+       rdfs:subClassOf :Location .
+
+
+###  Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi

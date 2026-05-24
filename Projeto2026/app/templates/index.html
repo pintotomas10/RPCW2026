@@ -1,0 +1,235 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:1200px">
+    
+    <header class="w3-container home-hero w3-padding-40 w3-round-large w3-card-4">
+        <h1 class="w3-xxlarge w3-text-white"><i class="fa fa-music w3-margin-right"></i>Festival da Canção</h1>
+        <p class="w3-opacity w3-text-white w3-margin-0">Visão geral, destaques e histórico por década</p>
+    </header>
+
+    <div class="kpi-grid w3-margin-top w3-margin-bottom">
+        {% set kpis = [
+            {'v': stats.num_edicoes, 'l': 'Edições', 'i': 'calendar'},
+            {'v': stats.num_musicas, 'l': 'Músicas', 'i': 'music'},
+            {'v': stats.num_artistas, 'l': 'Artistas', 'i': 'microphone'},
+            {'v': stats.num_compositores, 'l': 'Compositores', 'i': 'pencil'},
+            {'v': stats.num_fases, 'l': 'Fases', 'i': 'flag-checkered'},
+            {'v': stats.edicoes_com_semifinal, 'l': 'Com Semifinal', 'i': 'star'}
+        ] %}
+        {% for k in kpis %}
+        <div class="w3-white w3-center w3-card-2 w3-round-large kpi-card">
+            <h3 class="w3-margin-0"><b>{{ k.v }}</b></h3>
+            <span class="w3-small w3-wide"><i class="fa fa-{{ k.i }}"></i> {{ k.l | upper }}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="content-flex-row">
+        <div class="flex-cell main-highlight">
+            <div class="w3-white w3-card-4 w3-round-large highlight-card full-height-card standard-padding">
+                <h4 class="w3-text-indigo w3-margin-0-bottom"><i class="fa fa-star w3-margin-right"></i>Edição em Destaque</h4>
+                <hr class="card-divider">
+                <div class="w3-row-padding" style="padding:0; margin:0;">
+                    <div class="w3-col m4 s12" style="padding-left:0;">
+                        <div class="w3-small w3-text-grey">Ano em Foco</div>
+                        <h2 class="w3-margin-0 w3-text-indigo"><b>{{ spotlight.ano }}</b></h2>
+                        <div class="w3-badge w3-indigo w3-margin-top" style="padding: 6px 12px; font-weight: 500;">
+                            <i class="fa fa-music"></i> {{ spotlight.num_musicas }} Músicas
+                        </div>
+                    </div>
+                    <div class="w3-col m8 s12 border-left-desktop">
+                        <div class="w3-margin-bottom">
+                            <div class="w3-small w3-text-grey"><i class="fa fa-map-marker"></i> Local Principal</div>
+                            <h5 class="w3-margin-0" style="font-weight: 600; color: #33433b;">
+                                {{ spotlight.local if spotlight.local else 'Estúdios RTP' }}
+                            </h5>
+                            <span class="w3-small w3-opacity">Cidade: {{ spotlight.cidade if spotlight.cidade else 'Lisboa' }}</span>
+                        </div>
+                        
+                        <div class="w3-row" style="margin-top: 12px;">
+                            <div class="w3-col s6">
+                                <div class="w3-small w3-text-grey"><i class="fa fa-sliders"></i> Direção Musical</div>
+                                <span class="w3-small" style="font-weight: 500;">{{ spotlight.diretor if spotlight.diretor and spotlight.diretor != 'N/A' else 'N/A' }}</span>
+                            </div>
+                            <div class="w3-col s6">
+                                <div class="w3-small w3-text-grey"><i class="fa fa-flag"></i> Estrutura do Ano</div>
+                                <span class="w3-small w3-tag w3-light-blue w3-round" style="font-weight: 500;">
+                                    {% if stats.edicoes_com_semifinal > 0 %}Fases Múltiplas{% else %}Final Direta{% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% if spotlight.ano != 'N/A' %}
+                <div class="w3-margin-top action-footer">
+                    <a href="/edicao/{{ spotlight.ano }}" class="w3-button w3-indigo w3-round-large w3-hover-shadow">
+                        <i class="fa fa-eye w3-margin-right"></i>Explorar Edição Completa
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <div class="flex-cell sidebar-winner">
+            <div class="w3-white w3-card-4 w3-round-large full-height-card standard-padding">
+                <h4 class="w3-text-indigo w3-margin-0-bottom"><i class="fa fa-trophy w3-margin-right"></i>Último Vencedor</h4>
+                <hr class="card-divider">
+                <div class="w3-small w3-text-grey">Edição: <b>{{ recent_winner.ano }}</b></div>
+                <h3 class="w3-margin-8 w3-text-indigo"><b>{{ recent_winner.titulo }}</b></h3>
+                <div class="w3-small w3-opacity" style="margin-top: auto; padding-top: 8px;"><i class="fa fa-microphone"></i> Intérprete: {{ recent_winner.artista }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-flex-row w3-margin-top">
+        <div class="flex-cell">
+            <div class="w3-white w3-card-4 w3-round-large full-height-card standard-padding">
+                <h4 class="w3-text-indigo w3-margin-0-bottom"><i class="fa fa-users w3-margin-right"></i>Top 5 Artistas</h4>
+                <hr class="card-divider">
+                {% if top_artists %}
+                <ul class="w3-ul w3-small clean-list">
+                    {% for a in top_artists %}
+                    <li><b>{{ a.nome }}</b> <span class="w3-right w3-tag w3-light-grey w3-round">{{ a.total }}</span></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="w3-small w3-text-grey">Sem dados registados.</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="flex-cell">
+            <div class="w3-white w3-card-4 w3-round-large full-height-card standard-padding">
+                <h4 class="w3-text-indigo w3-margin-0-bottom"><i class="fa fa-list-ol w3-margin-right"></i>Top 5 Compositores</h4>
+                <hr class="card-divider">
+                {% if top_compositors %}
+                <ul class="w3-ul w3-small clean-list">
+                    {% for c in top_compositors %}
+                    <li><b>{{ c.nome }}</b> <span class="w3-right w3-tag w3-light-grey w3-round">{{ c.total }}</span></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <div class="w3-small w3-text-grey">Sem dados registados.</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-white w3-card-4 w3-round-large w3-margin-top w3-margin-bottom standard-padding">
+        <h4 class="w3-text-indigo w3-margin-0-bottom"><i class="fa fa-history w3-margin-right"></i>Timeline por Década</h4>
+        <hr class="card-divider">
+        {% if timeline %}
+        <div class="timeline-grid">
+            {% for d in timeline %}
+            <div class="timeline-item w3-center">
+                <div class="timeline-decade">{{ d.decada }}</div>
+                <div class="timeline-meta w3-margin-top">{{ d.edicoes }} edições</div>
+                <div class="timeline-meta">{{ d.musicas }} músicas</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="w3-small w3-text-grey">Sem dados para a timeline.</div>
+        {% endif %}
+    </div>
+
+    <div class="w3-padding-16">
+        <a href="/edicao" class="w3-button w3-indigo w3-round-large w3-hover-shadow">
+            <i class="fa fa-arrow-right w3-margin-right"></i>Navegar pelas Edições
+        </a>
+    </div>
+</div>
+
+<style>
+    body { background-color: #f7f9fc; }
+    .w3-card-4, .w3-card-2 { box-shadow: 0 4px 12px 0 rgba(0,0,0,0.04) !important; border: 1px solid #eef1f6; }
+    .home-hero { background: linear-gradient(135deg, #1c2f7a 0%, #3f51b5 60%, #5c6bc0 100%); }
+    
+    .standard-padding {
+        padding: 24px !important;
+        box-sizing: border-box !important;
+    }
+
+    .card-divider { border-top: 1px solid #edf1f7; margin: 12px 0 16px 0; }
+    .w3-margin-0-bottom { margin-bottom: 0 !important; }
+
+    /* KPIs Grid */
+    .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 16px;
+    }
+    .kpi-card { 
+        border-top: 4px solid #3f51b5; 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 20px 12px !important;
+        height: 100%;
+    }
+    .kpi-card b { font-size: 1.4rem; }
+    .kpi-card span { color: #3f51b5; font-weight: 600; margin-top: 6px; }
+
+    /* Flexbox de Layout */
+    .content-flex-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -8px;
+    }
+    .flex-cell {
+        flex: 1;
+        min-width: 300px;
+        padding: 0 8px;
+        margin-bottom: 16px;
+    }
+    .main-highlight { flex: 2; }
+    .sidebar-winner { flex: 1; min-width: 280px; }
+
+    .full-height-card {
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .highlight-card { border-left: 4px solid #3f51b5; }
+    .action-footer { margin-top: auto; padding-top: 16px; }
+
+    @media (min-width: 768px) {
+        .border-left-desktop { border-left: 1px solid #edf1f7; padding-left: 20px; }
+    }
+
+    .clean-list { padding-left: 0 !important; margin: 0; }
+    .clean-list li { border-bottom: 1px solid #f8f9fa !important; padding: 10px 0 !important; list-style: none; }
+    .clean-list li:last-child { border-bottom: none !important; }
+
+    /* Timeline */
+    .timeline-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    .timeline-item {
+        background: linear-gradient(180deg, #f8f9ff 0%, #f0f3ff 100%);
+        border: 1px solid #dbe1fd;
+        border-radius: 8px;
+        padding: 16px 12px;
+        transition: transform 0.2s;
+    }
+    .timeline-item:hover { transform: translateY(-3px); }
+    .timeline-decade { font-weight: 700; color: #243c9e; font-size: 1.1rem; }
+    .timeline-meta { font-size: 0.85rem; color: #5f678a; }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+        .kpi-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+        .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+        .flex-cell { flex: 100% !important; }
+        .border-left-desktop { border-left: none; padding-left: 0; margin-top: 12px; }
+    }
+</style>
+{% endblock %}

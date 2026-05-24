@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Festival da Canção{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="w3-light-grey">
+    <div class="w3-bar w3-indigo">
+        <a href="/" class="w3-bar-item w3-button"><i class="fa fa-music"></i> Home</a>
+        <a href="/edicao" class="w3-bar-item w3-button"><i class="fa fa-list"></i> Edições</a>
+        <a href="/cancoes" class="w3-bar-item w3-button"><i class="fa fa-music"></i> Canções</a>
+        <a href="/vencedores" class="w3-bar-item w3-button"><i class="fa fa-trophy"></i> Vencedores</a>
+        <a href="/pessoas" class="w3-bar-item w3-button"><i class="fa fa-users"></i> Artistas, Liricistas, Compositores e Apresentadores</a>
+        <a href="/nova-edicao" class="w3-bar-item w3-button w3-right"><i class="fa fa-plus"></i> Nova Edição</a>
+    </div>
+
+    {% block content %}{% endblock %}
+
+    <footer class="w3-container w3-indigo w3-padding-16 w3-margin-top">
+        <p class="w3-center">Projecto Festival da Canção - RPCW 2026</p>
+    </footer>
+</body>
+</html>

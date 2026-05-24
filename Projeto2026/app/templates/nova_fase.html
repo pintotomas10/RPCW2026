@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:800px">
+    
+    <header class="w3-container w3-indigo w3-padding-32 w3-round-large w3-card-4">
+        <h1 class="w3-xlarge"><i class="fa fa-plus-circle w3-margin-right"></i>Nova Fase para {{ ano }}</h1>
+        <p class="w3-opacity">Preencha os dados da semifinal ou final deste ano.</p>
+    </header>
+
+    <div class="w3-padding-16">
+        <a href="/edicao/{{ ano }}" class="w3-button w3-white w3-border w3-round-large w3-hover-indigo">
+            <i class="fa fa-arrow-left"></i> Voltar à Edição
+        </a>
+    </div>
+
+    {% if sucesso %}
+    <div class="w3-panel w3-green w3-round w3-animate-opacity">
+        <p><i class="fa fa-check w3-margin-right"></i>{{ sucesso }}</p>
+    </div>
+    {% endif %}
+
+    {% if erro %}
+    <div class="w3-panel w3-red w3-round w3-animate-opacity">
+        <p><i class="fa fa-warning w3-margin-right"></i>{{ erro }}</p>
+    </div>
+    {% endif %}
+
+    <div class="w3-card-4 w3-white w3-round-large">
+        <form method="POST" class="w3-container w3-padding-24">
+            
+            <div class="w3-row-padding">
+                <div class="w3-half w3-margin-bottom">
+                    <label class="w3-text-indigo"><b>Tipo de Evento</b></label>
+                    <select class="w3-select w3-border w3-round" name="tipo" required>
+                        <option value="SemiFinal">Semifinal</option>
+                        <option value="Final">Final</option>
+                    </select>
+                </div>
+                <div class="w3-half w3-margin-bottom">
+                    <label class="w3-text-indigo"><b>Data</b></label>
+                    <input class="w3-input w3-border w3-round" name="data" type="date" required>
+                </div>
+            </div>
+
+            <div class="w3-row-padding">
+                <div class="w3-half w3-margin-bottom">
+                    <label class="w3-text-indigo"><b>Local (Venue)</b></label>
+                    <input class="w3-input w3-border w3-round" name="local" type="text" placeholder="Ex: Coliseu" required>
+                </div>
+                <div class="w3-half w3-margin-bottom">
+                    <label class="w3-text-indigo"><b>Cidade</b></label>
+                    <input class="w3-input w3-border w3-round" name="cidade" type="text" placeholder="Ex: Lisboa" required>
+                </div>
+            </div>
+
+            <div class="w3-container w3-margin-bottom">
+                <label class="w3-text-indigo"><b>Apresentadores</b></label>
+                <textarea class="w3-input w3-border w3-round" name="apresentadores" rows="3" 
+                          placeholder="Um nome por linha (ex: Catarina Furtado)"></textarea>
+            </div>
+
+            <div class="w3-container">
+                <button type="submit" class="w3-button w3-indigo w3-block w3-round-large w3-padding-large w3-hover-amber">
+                    <b><i class="fa fa-save w3-margin-right"></i>GRAVAR FASE</b>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

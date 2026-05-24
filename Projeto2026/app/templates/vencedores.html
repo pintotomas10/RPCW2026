@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:1100px">
+    <header class="w3-container w3-padding-40 w3-round-large w3-card-4 winners-hero">
+        <h1 class="w3-xxlarge w3-text-brown"><i class="fa fa-trophy w3-margin-right"></i>Vencedores</h1>
+        <p class="w3-opacity w3-text-brown">Lista de vencedores por edição</p>
+    </header>
+
+    <div class="w3-row-padding w3-margin-top" style="display:flex; flex-wrap:wrap;">
+        {% if vencedores %}
+            {% for v in vencedores %}
+            <div class="w3-col l4 m6 s12 w3-margin-bottom" style="display:flex;">
+                <div class="w3-white w3-card-4 w3-round-large winner-card" style="overflow:hidden; display:flex; flex-direction:column; width:100%;">
+                    <div class="winner-card__top w3-padding-16" style="min-height:64px; display:flex; align-items:center;">
+                        <div class="edition-header-inner">
+                            <div class="w3-small">EDIÇÃO</div>
+                            <h4 class="w3-margin-0"><b>{{ v.ano }}</b></h4>
+                        </div>
+                    </div>
+
+                    <div class="w3-container w3-padding" style="flex-grow:1;">
+                        <h3 class="w3-margin-0"><b>{{ v.titulo }}</b></h3>
+                        <div class="w3-small w3-opacity">Intérprete: {{ v.artista }}</div>
+                        {% if v.europlace and v.europlace != 'N/A' %}
+                        <div class="w3-margin-top w3-small winner-place"><i class="fa fa-globe"></i> Classificação na Eurovisão: <b>{{ v.europlace }}</b></div>
+                        {% endif %}
+                    </div>
+
+                    <div class="w3-container w3-padding winner-card__footer">
+                        <a href="/edicao/{{ v.ano }}" class="w3-button w3-round-large winner-btn">Ver edição</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="w3-container w3-center w3-padding-32 w3-text-grey">Sem vencedores registados.</div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+.w3-card-4, .w3-card-2 { box-shadow: 0 4px 10px 0 rgba(0,0,0,0.05) !important; border: 1px solid #eee; }
+.edition-header-inner { padding-left: 12px; }
+.winners-hero {
+    background: linear-gradient(135deg, #fff3bf 0%, #ffe08a 45%, #f4c542 100%);
+    border: 1px solid #e0b42b;
+}
+.winner-card__top {
+    background: linear-gradient(135deg, #f5d76e 0%, #d9a520 100%);
+    color: #3f2f00;
+}
+.winner-card__top h4,
+.winner-card__top .w3-small {
+    color: #3f2f00 !important;
+}
+.winner-place {
+    color: #6f5200;
+}
+.winner-card__footer {
+    background: #fff8dc;
+}
+.winner-btn {
+    background: #d9a520;
+    color: #fff8dc;
+    border: 1px solid #b98a12;
+}
+.winner-btn:hover {
+    background: #b98a12;
+    color: #fff;
+}
+</style>
+{% endblock %}

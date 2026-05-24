@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-64 w3-content" style="max-width:800px">
+
+    <header class="w3-container w3-amber w3-padding-32 w3-round-large w3-card-4 w3-center">
+        <h1 class="w3-xxlarge">
+            <i class="fa fa-trophy w3-margin-right w3-text-white"></i>
+            <b class="w3-text-white">Vencedor {{ ano }}</b>
+        </h1>
+        <p class="w3-large w3-text-white w3-opacity">Consagra a canção campeã e o seu percurso europeu</p>
+    </header>
+
+    {% if erro %}
+    <div class="w3-panel w3-pale-red w3-leftbar w3-border-red w3-card w3-animate-top w3-margin-top">
+        <p><i class="fa fa-exclamation-triangle w3-margin-right"></i><b>Erro:</b> {{ erro }}</p>
+    </div>
+    {% endif %}
+
+    {% if sucesso %}
+    <div class="w3-panel w3-pale-green w3-leftbar w3-border-green w3-card w3-animate-top w3-margin-top">
+        <p><i class="fa fa-check w3-margin-right"></i>{{ sucesso }}</p>
+    </div>
+    {% endif %}
+
+    <div class="w3-card-4 w3-white w3-round-large w3-margin-top">
+        <form method="POST" class="w3-container w3-padding-32">
+            
+            <div class="w3-section">
+                <label class="w3-text-amber"><b><i class="fa fa-music w3-margin-right"></i>Canção Vencedora</b></label>
+                <select class="w3-select w3-border w3-round-large w3-light-grey w3-margin-top" name="contestant" required>
+                    <option value="" disabled selected>Escolha a música que ganhou o festival...</option>
+                    {% for c in contestants %}
+                    <option value="{{ c.id }}" {% if current_winner_id and c.id == current_winner_id %}selected{% endif %}>
+                        {{ c.titulo }} — {{ c.artista }}
+                    </option>
+                    {% endfor %}
+                </select>
+                {% if current_winner_id %}
+                <p class="w3-small w3-text-grey w3-margin-left w3-margin-top">Vencedor atual já selecionado.</p>
+                {% endif %}
+            </div>
+
+            <div class="w3-section">
+                <label class="w3-text-amber"><b><i class="fa fa-globe w3-margin-right"></i>Resultado na Eurovisão</b></label>
+                <input class="w3-input w3-border w3-round-large w3-light-grey w3-margin-top" 
+                       type="text" 
+                       name="resultado_eurovisao" 
+                       placeholder="Ex: 1º lugar, Finalista, 12º lugar na Semifinal...">
+                <p class="w3-small w3-text-grey w3-margin-left">
+                    <i class="fa fa-info-circle"></i> Opcional. Indica a classificação final no concurso internacional.
+                </p>
+            </div>
+
+            <div class="w3-padding-16 w3-center">
+                <button type="submit" class="w3-button w3-amber w3-round-xxlarge w3-hover-orange w3-card-2" style="width:60%; font-weight:bold;">
+                    <i class="fa fa-save w3-margin-right"></i> Gravar Vencedor
+                </button>
+            </div>
+
+            <div class="w3-center">
+                <a href="/edicao/{{ ano }}" class="w3-button w3-text-grey w3-hover-text-black" style="text-decoration:none">
+                    <i class="fa fa-arrow-left"></i> Voltar à Edição
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<style>
+    body { background-color: #f7f9fc; }
+    .w3-select, .w3-input { padding: 12px!important; outline: none; }
+    .w3-card-4 { transition: 0.3s; }
+    .w3-card-4:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); }
+    header {
+        background: linear-gradient(135deg, #FFC107 0%, #FF9800 100%) !important;
+    }
+</style>
+{% endblock %}

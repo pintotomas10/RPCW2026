@@ -1,0 +1,246 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:1200px">
+    
+    <header class="w3-container w3-indigo w3-padding-48 w3-round-large w3-card-4 w3-animate-top" 
+            style="background: linear-gradient(to right, #3f51b5, #5c6bc0);">
+        <h1 class="w3-xxlarge w3-text-white">
+            <i class="fa fa-calendar w3-margin-right"></i>Festival da Canção <b>{{ ano }}</b>
+        </h1>
+        <p class="w3-opacity">Detalhes da edição, fases e lista completa de participantes</p>
+    </header>
+
+    <div class="w3-padding-16">
+        <a href="/edicao" class="w3-button w3-white w3-border w3-border-light-grey w3-round-large w3-hover-indigo">
+            <i class="fa fa-arrow-left"></i> Voltar ao Catálogo
+        </a>
+    </div>
+
+    <div class="w3-bar w3-margin-bottom">
+
+        <a href="/edicao/{{ ano }}/nova-fase"
+           class="w3-button w3-white w3-border w3-round-large">
+            <i class="fa fa-plus"></i> Fase
+        </a>
+
+        <a href="/edicao/{{ ano }}/nova-musica"
+           class="w3-button w3-white w3-border w3-round-large">
+            <i class="fa fa-plus"></i> Música
+        </a>
+
+        <a href="/edicao/{{ ano }}/vencedor"
+           class="w3-button w3-yellow w3-round-large">
+            <i class="fa fa-pencil"></i> Vencedor
+        </a>
+
+        <a href="/edicao/{{ ano }}/diretor-musical"
+           class="w3-button w3-teal w3-round-large">
+            <i class="fa fa-music"></i> Diretor Musical
+        </a>
+
+    </div>
+
+    <div class="w3-row-padding w3-margin-bottom">
+        {% set stats = [
+            {'val': edicao_info.ano, 'label': 'Edição', 'icon': 'calendar'},
+            {'val': edicao_info.num_musicas, 'label': 'Músicas', 'icon': 'music'},
+            {'val': edicao_info.fases | length, 'label': 'Fases', 'icon': 'star'}
+        ] %}
+        {% for stat in stats %}
+        <div class="w3-col m4 s12 w3-margin-bottom">
+            <div class="w3-white w3-padding-24 w3-center w3-card-2 w3-round-large w3-border-top w3-border-indigo" style="border-width: 4px !important">
+                <h2 class="w3-margin-0 w3-text-dark-grey"><b>{{ stat.val }}</b></h2>
+                <span class="w3-text-indigo w3-small w3-wide"><i class="fa fa-{{ stat.icon }}"></i> {{ stat.label | upper }}</span>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <section class="w3-margin-top">
+        {% if edicao_info.vencedor and edicao_info.vencedor != 'N/A' %}
+        <div class="w3-container w3-yellow w3-padding-16 w3-round-large w3-margin-bottom">
+            <div class="w3-row">
+                <div class="w3-col m1 s2 w3-center">
+                    <i class="fa fa-trophy w3-xxlarge w3-text-indigo"></i>
+                </div>
+                <div class="w3-col m11 s10">
+                    <div class="w3-small w3-text-indigo">Vencedor da Edição</div>
+                    <h3 class="w3-margin-0"><b>{{ edicao_info.vencedor }}</b></h3>
+                    <div class="w3-small w3-opacity">Intérprete: {% if edicao_info.vencedor_artist and edicao_info.vencedor_artist != 'N/A' %}<a class="person-inline-link" href="{{ url_for('pessoa', nome=edicao_info.vencedor_artist, year=ano) }}">{{ edicao_info.vencedor_artist }}</a>{% else %}N/A{% endif %}</div>
+                    {% if edicao_info.vencedor_place and edicao_info.vencedor_place != 'N/A' %}
+                    <div class="w3-small w3-opacity">Classificação na Eurovisão: {{ edicao_info.vencedor_place }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16 w3-text-indigo">
+            <i class="fa fa-flag-checkered w3-margin-right"></i>Fases do Festival
+        </h3>
+        {% if edicao_info.music_director and edicao_info.music_director != 'N/A' %}
+        <div class="w3-small w3-text-grey w3-margin-bottom">Diretor musical: <a href="{{ url_for('pessoa', nome=edicao_info.music_director, year=ano) }}">{{ edicao_info.music_director }}</a></div>
+        {% endif %}
+        <div class="w3-row-padding">
+            {% set semi_counter = namespace(count=0) %}
+            {% for fase in edicao_info.fases %}
+            <div id="fase-card-{{ loop.index0 }}" class="w3-container w3-white w3-margin-bottom w3-padding-16 w3-card-2 w3-round-large" style="position: relative;">
+                <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 10;">
+                    <a href="/edicao/{{ ano }}/fase/{{ loop.index0 }}/editar" 
+                       class="w3-button w3-small w3-indigo w3-round-large w3-hover-dark-grey"
+                       title="Editar fase">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+                    <button onclick="apagarFase('{{ ano }}', {{ loop.index0 }})" 
+                            class="w3-button w3-small w3-red w3-round-large w3-hover-dark-red"
+                            title="Apagar fase"
+                            style="border: none; cursor: pointer;">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                </div>
+                <div class="w3-row">
+                    <div class="w3-col m4">
+                        {% if 'semi' in fase.tipo|lower %}
+                            {% set semi_counter.count = semi_counter.count + 1 %}
+                            <span class="w3-tag w3-indigo w3-round w3-large">{{ fase.tipo }} {{ semi_counter.count }}</span>
+                        {% else %}
+                            <span class="w3-tag w3-indigo w3-round w3-large">{{ fase.tipo }}</span>
+                        {% endif %}
+                    </div>
+                    <div class="w3-col m8">
+                        <div class="w3-row w3-small w3-text-grey">
+                            <div class="w3-col m4"><i class="fa fa-clock-o"></i> {{ fase.data }}</div>
+                            <div class="w3-col m8">
+                                <i class="fa fa-map-marker"></i>
+                                {{ fase.local }}
+                                {% if fase.cidade and fase.cidade != '' %}
+                                &middot; {{ fase.cidade }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="w3-margin-top">
+                            {% for ap in fase.apresentadores %}
+                            <a class="w3-tag w3-light-grey w3-round-large w3-small person-tag-link" style="padding: 2px 10px" href="{{ url_for('pessoa', nome=ap, year=ano) }}">{{ ap }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="w3-margin-top">
+        <h3 class="w3-border-bottom w3-border-light-grey w3-padding-16 w3-text-indigo">
+            <i class="fa fa-microphone w3-margin-right"></i>Músicas em Competição
+        </h3>
+        
+        <div class="w3-row-padding" style="display: flex; flex-wrap: wrap;">
+            {% for p in participantes %}
+            <div class="w3-col l4 m6 s12 w3-margin-bottom" style="display: flex;">
+                <div id="musica-card-{{ p.id }}" class="w3-white w3-card-4 w3-round-large" style="overflow: hidden; display: flex; flex-direction: column; width: 100%; position: relative;">
+                    
+                    <div style="position: absolute; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 10;">
+                        <a href="/edicao/{{ ano }}/musica/{{ p.id }}/editar" 
+                           class="w3-button w3-small w3-indigo w3-round-large w3-hover-dark-grey"
+                           title="Editar música">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        <button onclick="apagarMusica('{{ ano }}', '{{ p.id }}')" 
+                                class="w3-button w3-small w3-red w3-round-large w3-hover-dark-red"
+                                title="Apagar música"
+                                style="border: none; cursor: pointer;">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="w3-indigo w3-padding-16" style="min-height: 80px; display: flex; align-items: center">
+                        <div class="w3-container edition-header-inner">
+                            <span class="w3-small w3-opacity">TÍTULO</span>
+                            <h5 class="w3-margin-0"><b>{{ p.titulo }}</b></h5>
+                        </div>
+                    </div>
+                    
+                    <div class="w3-container w3-padding" style="flex-grow: 1;">
+                        <div class="w3-padding-8">
+                            <span class="w3-small w3-text-indigo"><i class="fa fa-user-circle"></i> INTÉRPRETE</span>
+                            <p class="w3-margin-0"><b>{% if p.artista and p.artista != 'N/A' %}<a class="person-inline-link" href="{{ url_for('pessoa', nome=p.artista, year=ano) }}">{{ p.artista }}</a>{% else %}N/A{% endif %}</b></p>
+                        </div>
+
+                        <hr style="margin: 8px 0">
+
+                        <div class="w3-row">
+                            <div class="w3-col s12 w3-margin-bottom">
+                                <span class="w3-text-grey w3-tiny"><i class="fa fa-pencil"></i> COMPOSIÇÃO</span><br>
+                                {% for c in p.compositores %}
+                                <a class="w3-tag w3-light-blue w3-tiny w3-round person-tag-link" href="{{ url_for('pessoa', nome=c, year=ano) }}">{{ c }}</a>
+                                {% endfor %}
+                            </div>
+                            <div class="w3-col s12">
+                                <span class="w3-text-grey w3-tiny"><i class="fa fa-quote-left"></i> LETRA</span><br>
+                                {% for l in p.liricistas %}
+                                <a class="w3-tag w3-pale-green w3-tiny w3-round person-tag-link" href="{{ url_for('pessoa', nome=l, year=ano) }}">{{ l }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<script>
+function apagarMusica(ano, musicaId) {
+    if (!confirm('Tem a certeza que quer apagar esta música?')) return;
+    fetch(`/edicao/${ano}/musica/${musicaId}/apagar`, { method: 'POST' })
+        .then(r => r.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const el = document.getElementById(`musica-card-${musicaId}`);
+                if (el) el.remove();
+                else window.location.reload();
+            } else {
+                alert('Erro: ' + data.message);
+            }
+        })
+        .catch(e => alert('Erro ao apagar: ' + e));
+}
+
+function apagarFase(ano, faseIndex) {
+    if (!confirm('Tem a certeza que quer apagar esta fase?')) return;
+    fetch(`/edicao/${ano}/fase/${faseIndex}/apagar`, { method: 'POST' })
+        .then(r => r.json())
+        .then(data => {
+            if (data.status === 'success') {
+                const el = document.getElementById(`fase-card-${faseIndex}`);
+                if (el) el.remove();
+                else window.location.reload();
+            } else {
+                alert('Erro: ' + data.message);
+            }
+        })
+        .catch(e => alert('Erro ao apagar: ' + e));
+}
+</script>
+
+<style>
+    .w3-card-4, .w3-card-2 { box-shadow: 0 4px 10px 0 rgba(0,0,0,0.05) !important; border: 1px solid #eee; }
+    .w3-tag { margin-top: 2px; }
+    h1, h2, h3, h5 { font-family: "Segoe UI", Arial, sans-serif; }
+    /* Ajuste para garantir que o flexbox não quebre o espaçamento do W3.CSS */
+    .w3-row-padding { margin-left: -16px; margin-right: -16px; }
+    .edition-header-inner { padding-left: 12px; }
+    .person-inline-link,
+    .person-tag-link {
+        color: inherit;
+        text-decoration: none;
+    }
+    .person-inline-link:hover,
+    .person-tag-link:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

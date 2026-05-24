@@ -1,0 +1,180 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:1200px">
+    <header class="w3-container person-hero w3-padding-40 w3-round-large w3-card-4">
+        <div class="w3-small w3-opacity w3-text-white">PESSOA DO FESTIVAL</div>
+        <h1 class="w3-xxlarge w3-text-white"><i class="fa fa-user-circle w3-margin-right"></i>{{ nome }}</h1>
+        <p class="w3-opacity w3-text-white">Participações como artista, liricista e compositor</p>
+    </header>
+
+    {% if year and year != 'N/A' %}
+    <div class="w3-padding-16">
+        <a href="/edicao/{{ year }}" class="w3-button w3-white w3-border w3-border-light-grey w3-round-large w3-hover-light-green">
+            <i class="fa fa-arrow-left"></i> Voltar para Edição {{ year }}
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="w3-row-padding w3-margin-top person-grid">
+        <div class="w3-col l3 m6 s12 w3-margin-bottom">
+            <div class="w3-white w3-card-4 w3-round-large role-card">
+                <div class="role-head role-head--artist">
+                    <h3 class="w3-margin-0"><i class="fa fa-microphone w3-margin-right"></i>Como artista</h3>
+                    <span class="role-count">{{ participacoes_artista|length }}</span>
+                </div>
+                <div class="role-body">
+                    {% if participacoes_artista %}
+                        {% for p in participacoes_artista %}
+                        <a href="{{ url_for('edicao_detalhe', ano=p.ano) }}" class="role-link">
+                            <div class="role-item">
+                                <div class="role-year">{{ p.ano }}</div>
+                                <div class="role-song">{{ p.titulo }}</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="role-empty">Sem participações como artista.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-col l3 m6 s12 w3-margin-bottom">
+            <div class="w3-white w3-card-4 w3-round-large role-card">
+                <div class="role-head role-head--lyricist">
+                    <h3 class="w3-margin-0"><i class="fa fa-quote-left w3-margin-right"></i>Como liricista</h3>
+                    <span class="role-count">{{ participacoes_liricista|length }}</span>
+                </div>
+                <div class="role-body">
+                    {% if participacoes_liricista %}
+                        {% for p in participacoes_liricista %}
+                        <a href="{{ url_for('edicao_detalhe', ano=p.ano) }}" class="role-link">
+                            <div class="role-item">
+                                <div class="role-year">{{ p.ano }}</div>
+                                <div class="role-song">{{ p.titulo }}</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="role-empty">Sem participações como liricista.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-col l3 m6 s12 w3-margin-bottom">
+            <div class="w3-white w3-card-4 w3-round-large role-card">
+                <div class="role-head role-head--composer">
+                    <h3 class="w3-margin-0"><i class="fa fa-pencil w3-margin-right"></i>Como compositor</h3>
+                    <span class="role-count">{{ participacoes_compositor|length }}</span>
+                </div>
+                <div class="role-body">
+                    {% if participacoes_compositor %}
+                        {% for p in participacoes_compositor %}
+                        <a href="{{ url_for('edicao_detalhe', ano=p.ano) }}" class="role-link">
+                            <div class="role-item">
+                                <div class="role-year">{{ p.ano }}</div>
+                                <div class="role-song">{{ p.titulo }}</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="role-empty">Sem participações como compositor.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="w3-col l3 m6 s12 w3-margin-bottom">
+            <div class="w3-white w3-card-4 w3-round-large role-card">
+                <div class="role-head role-head--presenter">
+                    <h3 class="w3-margin-0"><i class="fa fa-microphone-slash w3-margin-right"></i>Como apresentador</h3>
+                    <span class="role-count">{{ participacoes_apresentador|length }}</span>
+                </div>
+                <div class="role-body">
+                    {% if participacoes_apresentador %}
+                        {% for p in participacoes_apresentador %}
+                        <a href="{{ url_for('edicao_detalhe', ano=p.ano) }}" class="role-link">
+                            <div class="role-item">
+                                <div class="role-year">{{ p.ano }}</div>
+                                <div class="role-song">{{ p.tipoFase }}</div>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    {% else %}
+                        <div class="role-empty">Sem participações como apresentador.</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-margin-top">
+        <a href="/pessoas" class="w3-button w3-round-large person-back">Voltar à lista</a>
+    </div>
+</div>
+
+<style>
+.w3-card-4, .w3-card-2 { box-shadow: 0 4px 10px 0 rgba(0,0,0,0.05) !important; border: 1px solid #eee; }
+.person-hero {
+    background: linear-gradient(135deg, #204b3a 0%, #2f6b53 55%, #dce7dc 150%);
+    border: 1px solid #1c3f31;
+}
+.role-card { overflow: hidden; }
+.person-grid {
+    display: flex;
+    flex-wrap: wrap;
+}
+.role-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 18px;
+    color: #ffffff;
+}
+.role-head h3 {
+    font-size: 1.05rem;
+}
+.role-head--artist { background: linear-gradient(135deg, #2f6b53 0%, #204b3a 100%); }
+.role-head--lyricist { background: linear-gradient(135deg, #5b6f5f 0%, #425348 100%); }
+.role-head--composer { background: linear-gradient(135deg, #4a6359 0%, #2f4a43 100%); }
+.role-head--presenter { background: linear-gradient(135deg, #3a5a4a 0%, #234538 100%); }
+.role-count {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-size: 0.85rem;
+}
+.role-body { padding: 8px 0; }
+.role-item {
+    padding: 12px 18px;
+    border-bottom: 1px solid #edf1ee;
+}
+.role-link { display: block; text-decoration: none; color: inherit }
+.role-item:last-child { border-bottom: 0; }
+.role-year {
+    font-size: 0.8rem;
+    color: #6b7f74;
+    margin-bottom: 2px;
+}
+.role-song {
+    color: #33433b;
+    font-weight: 600;
+}
+.role-empty {
+    padding: 14px 18px;
+    color: #7a8a81;
+    font-style: italic;
+}
+.person-back {
+    background: #2f6b53;
+    color: #fff;
+}
+.person-back:hover {
+    background: #204b3a;
+    color: #fff;
+}
+</style>
+{% endblock %}

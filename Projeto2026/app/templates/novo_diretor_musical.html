@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-64 w3-content" style="max-width:800px">
+
+    <header class="w3-container w3-teal w3-padding-32 w3-round-large w3-card-4 w3-center">
+        <h1 class="w3-xxlarge">
+            <i class="fa fa-music w3-margin-right w3-text-white"></i>
+            <b class="w3-text-white">Diretor Musical {{ ano }}</b>
+        </h1>
+        <p class="w3-large w3-text-white w3-opacity">Define ou substitui o diretor musical da edição</p>
+    </header>
+
+    {% if erro %}
+    <div class="w3-panel w3-pale-red w3-leftbar w3-border-red w3-card w3-animate-top w3-margin-top">
+        <p><i class="fa fa-exclamation-triangle w3-margin-right"></i><b>Erro:</b> {{ erro }}</p>
+    </div>
+    {% endif %}
+
+    {% if sucesso %}
+    <div class="w3-panel w3-pale-green w3-leftbar w3-border-green w3-card w3-animate-top w3-margin-top">
+        <p><i class="fa fa-check w3-margin-right"></i>{{ sucesso }}</p>
+    </div>
+    {% endif %}
+
+    <div class="w3-card-4 w3-white w3-round-large w3-margin-top">
+        <form method="POST" class="w3-container w3-padding-32">
+
+            <div class="w3-panel w3-pale-blue w3-leftbar w3-border-blue w3-round">
+                <p class="w3-margin-0">
+                    <b>Diretor atual:</b>
+                    {% if current_director %}
+                        {{ current_director }}
+                    {% else %}
+                        Não definido
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="w3-section">
+                <label class="w3-text-teal"><b><i class="fa fa-users w3-margin-right"></i>Escolher diretor existente</b></label>
+                <select class="w3-select w3-border w3-round-large w3-light-grey w3-margin-top" name="director_existing">
+                    <option value="" selected>Selecionar da lista...</option>
+                    {% for nome in nomes %}
+                    <option value="{{ nome }}" {% if current_director and nome == current_director %}selected{% endif %}>{{ nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="w3-section">
+                <label class="w3-text-teal"><b><i class="fa fa-user-plus w3-margin-right"></i>Ou criar/substituir por novo nome</b></label>
+                <input class="w3-input w3-border w3-round-large w3-light-grey w3-margin-top"
+                       type="text"
+                       name="director_new"
+                       placeholder="Escreve um novo diretor musical">
+                <p class="w3-small w3-text-grey w3-margin-left">
+                    <i class="fa fa-info-circle"></i> Se preencheres este campo, ele tem prioridade sobre a seleção da lista.
+                </p>
+            </div>
+
+            <div class="w3-padding-16 w3-center">
+                <button type="submit" class="w3-button w3-teal w3-round-xxlarge w3-hover-deep-orange w3-card-2" style="width:60%; font-weight:bold;">
+                    <i class="fa fa-save w3-margin-right"></i> Gravar Diretor Musical
+                </button>
+            </div>
+
+            <div class="w3-center">
+                <a href="/edicao/{{ ano }}" class="w3-button w3-text-grey w3-hover-text-black" style="text-decoration:none">
+                    <i class="fa fa-arrow-left"></i> Voltar à Edição
+                </a>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<style>
+    body { background-color: #f7f9fc; }
+    .w3-select, .w3-input { padding: 12px!important; outline: none; }
+    .w3-card-4 { transition: 0.3s; }
+    .w3-card-4:hover { box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); }
+    header {
+        background: linear-gradient(135deg, #009688 0%, #00796B 100%) !important;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,169 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="w3-container w3-padding-32 w3-content" style="max-width:800px">
+
+    <header class="w3-container w3-padding-32 w3-round-large w3-card-4 music-edit-hero">
+        <h1 class="w3-xlarge w3-text-white">
+            <i class="fa fa-pencil w3-margin-right"></i>Editar Música
+        </h1>
+        <p class="w3-text-white w3-opacity w3-margin-0">Gestão e atualização dos dados da canção de {{ ano }}</p>
+    </header>
+
+    <div class="w3-padding-16">
+        <a href="/edicao/{{ ano }}" class="w3-button w3-white w3-border w3-border-light-grey w3-round-large w3-hover-indigo">
+            <i class="fa fa-arrow-left"></i> Voltar à Edição
+        </a>
+    </div>
+
+    {% if erro %}
+    <div class="w3-panel w3-pale-red w3-leftbar w3-border-red w3-card w3-animate-top">
+        <p><strong>Erro:</strong> {{ erro }}</p>
+    </div>
+    {% endif %}
+
+    {% if sucesso %}
+    <div class="w3-panel w3-pale-green w3-leftbar w3-border-green w3-card w3-animate-top">
+        <p><strong>{{ sucesso }}</strong></p>
+    </div>
+    {% endif %}
+
+    <div class="w3-card-4 w3-white w3-round-large w3-margin-top">
+        <form method="POST" class="w3-container w3-padding-32 custom-form">
+
+            <div class="form-group">
+                <label class="w3-text-indigo"><b><i class="fa fa-music w3-margin-right"></i>Título da Música</b></label>
+                <input class="w3-input w3-border w3-round-large"
+                       type="text"
+                       name="titulo"
+                       value="{{ musica_data.titulo if musica_data else '' }}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label class="w3-text-indigo"><b><i class="fa fa-microphone w3-margin-right"></i>Artista / Intérprete</b></label>
+                <input class="w3-input w3-border w3-round-large"
+                       type="text"
+                       name="artista"
+                       value="{{ musica_data.artista if musica_data else '' }}"
+                       required>
+            </div>
+
+            <div class="form-group">
+                <label class="w3-text-indigo"><b><i class="fa fa-pencil w3-margin-right"></i>Compositores</b></label>
+                <textarea class="w3-input w3-border w3-round-large"
+                          name="compositores"
+                          rows="3"
+                          placeholder="Ex: João Silva, Maria Costa">{{ musica_data.compositores if musica_data else '' }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="w3-text-indigo"><b><i class="fa fa-quote-left w3-margin-right"></i>Liricistas</b></label>
+                <textarea class="w3-input w3-border w3-round-large"
+                          name="liricistas"
+                          rows="3"
+                          placeholder="Ex: Ana Martins, Pedro Sousa">{{ musica_data.liricistas if musica_data else '' }}</textarea>
+            </div>
+
+            <div class="w3-margin-top w3-padding-16 button-container">
+                <div class="action-buttons">
+                    <button type="submit" class="w3-button w3-indigo w3-round-large w3-hover-shadow">
+                        <i class="fa fa-save w3-margin-right"></i>Guardar Alterações
+                    </button>
+
+                    <a href="/edicao/{{ ano }}" class="w3-button w3-light-grey w3-round-large">
+                        Cancelar
+                    </a>
+                </div>
+
+                <button type="button" onclick="confirmarApagar()" class="w3-button w3-red w3-round-large w3-hover-shadow delete-btn">
+                    <i class="fa fa-trash w3-margin-right"></i>Apagar Música
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function confirmarApagar() {
+    if (confirm('Tem a certeza que quer apagar esta música? Esta ação não pode ser desfeita.')) {
+        fetch(`/edicao/{{ ano }}/musica/{{ musica_id }}/apagar`, { method: 'POST' })
+            .then(r => r.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert(data.message);
+                    window.location.href = `/edicao/{{ ano }}`;
+                } else {
+                    alert('Erro: ' + data.message);
+                }
+            })
+            .catch(e => alert('Erro ao apagar: ' + e));
+    }
+}
+</script>
+
+<style>
+    body { background-color: #f7f9fc; }
+    
+    /* Gradiente do topo a condizer com o estilo base */
+    .music-edit-hero {
+        background: linear-gradient(135deg, #3f51b5 0%, #5c6bc0 100%) !important;
+    }
+
+    /* O Segredo do Alinhamento: Forçar a contagem do padding dentro da largura */
+    .custom-form .w3-input {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 12px !important;
+        margin-top: 6px;
+        background-color: #fcfdfe;
+        transition: all 0.3s ease;
+    }
+
+    .custom-form .w3-input:focus {
+        background-color: #ffffff;
+        border-color: #3f51b5 !important;
+        outline: none;
+        box-shadow: 0 0 8px rgba(63, 81, 181, 0.15);
+    }
+
+    /* Espaçamento vertical entre os blocos do formulário */
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-group label {
+        display: block;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+    }
+
+    /* Alinhamento responsivo dos botões footer */
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+        border-top: 1px solid #edf1ee;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+        .button-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .action-buttons {
+            flex-direction: column;
+        }
+        .delete-btn {
+            order: -1; /* Atira o botão de apagar para o topo no telemóvel para evitar cliques acidentais */
+        }
+    }
+</style>
+{% endblock %}
